@@ -1,0 +1,8 @@
+(dp1
+S'words2id'
+p2
+I43918
+sS'target2id'
+p3
+I23
+s.

@@ -1,0 +1,27 @@
+[2017-07-25 07:07] configuration (ex/conll16st-v35b1-zh-default-4/blind)
+[2017-07-25 07:07]   config 'arg1_len': 500
+[2017-07-25 07:07]   config 'arg2_len': 500
+[2017-07-25 07:07]   config 'backend': theano
+[2017-07-25 07:07]   config 'backend_theano': device=gpu,floatX=float32,nvcc.fastmath=True,lib.cnmem=1
+[2017-07-25 07:07]   config 'batch_size': 64
+[2017-07-25 07:07]   config 'conn_len': 10
+[2017-07-25 07:07]   config 'dataset_dir': data/conll16st-zh-04-27-2016-blind-test
+[2017-07-25 07:07]   config 'filter_fn_name': None
+[2017-07-25 07:07]   config 'lang': zh
+[2017-07-25 07:07]   config 'mode': word
+[2017-07-25 07:07]   config 'model_dir': ex/conll16st-v35b1-zh-default-4
+[2017-07-25 07:07]   config 'normalization_mode': sample_aspect
+[2017-07-25 07:07]   config 'output_dir': ex/conll16st-v35b1-zh-default-4/blind
+[2017-07-25 07:07]   config 'punc_len': 2
+[2017-07-25 07:07]   config 'rest': []
+[2017-07-25 07:07]   config 'snapshot_size': 2048
+[2017-07-25 07:07] load dataset for prediction (data/conll16st-zh-04-27-2016-blind-test)
+[2017-07-25 07:07]   lang: zh, doc_ids: 64, words: 29892, rel_ids: 2101, relation tokens: 82465
+[2017-07-25 07:07] load previous indexes (ex/conll16st-v35b1-zh-default-4/indexes.pkl)
+[2017-07-25 07:07]   words2id: 14785, target2id: 12
+[2017-07-25 07:07] load model (ex/conll16st-v35b1-zh-default-4)
+[2017-07-25 07:07] load previous weights (ex/conll16st-v35b1-zh-default-4/weights_val_all_f1.hdf5)
+[2017-07-25 07:07] prediction preparation
+[2017-07-25 07:07] make predictions (ex/conll16st-v35b1-zh-default-4/blind/output.json)
+[2017-07-25 07:09] peek into filtering weights (ex/conll16st-v35b1-zh-default-4/blind/peek.html)
+[2017-07-25 07:12] finished (ex/conll16st-v35b1-zh-default-4/blind)

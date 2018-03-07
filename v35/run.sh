@@ -1,5 +1,5 @@
 #!/bin/bash
-# Full run for discourse relation sense classifier (CoNLL16st).
+# Full run of our model with focused RNNs for discourse relation sense classifier (CoNLL16st).
 #
 # Consisting of:
 #   - trainer of the focused RNN model from scratch
@@ -17,7 +17,7 @@
 # License: All rights reserved
 
 MODEL_DIR="$1"
-LANG="$2"
+LANG="${2:0:2}"  # use only first two chars
 shift; shift
 EXTRA="$@"
 OUTPUT_DIR="$MODEL_DIR"

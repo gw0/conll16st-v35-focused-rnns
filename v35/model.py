@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # pylint: disable=C0103
 """
-Our Keras model and custom Keras layers.
+Our focused RNNs model in Keras.
 """
 __author__ = "GW [http://gw.tnode.com/] <gw.2017@ena.one>"
 __license__ = "GPLv3+"

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # pylint: disable=C0103,W0621
 """
-Apply a trained Keras model for discourse relation sense classification (CoNLL16st).
+Apply our trained model with focused RNNs to discourse relation sense classification (CoNLL16st).
 """
 __author__ = "GW [http://gw.tnode.com/] <gw.2017@ena.one>"
 __license__ = "GPLv3+"
@@ -35,7 +35,7 @@ argp = argparse.ArgumentParser(description=__doc__.strip().split("\n", 1)[0])
 argp.add_argument('model_dir',
     help="pre-trained model directory")
 argp.add_argument('lang',
-    choices=["en", "zh"],
+    choices=["en", "ench", "zh", "zhch"],
     help="dataset language (en/zh)")
 argp.add_argument('dataset_dir',
     help="CoNLL16st dataset for prediction (directory with 'parses.json', 'relations-no-senses.json')")
@@ -70,6 +70,9 @@ args, unknown_args = argp.parse_known_args()
 args.backend = K._backend
 args.backend_theano = os.getenv("THEANO_FLAGS")
 args.rest = unknown_args
+if args.lang.endswith("ch"):
+    args.mode = 'char'
+    args.lang = args.lang[:-2]
 
 ### initialize experiment
 indexes_pkl = "{}/indexes.pkl".format(args.model_dir)

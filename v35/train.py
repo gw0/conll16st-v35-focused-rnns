@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # pylint: disable=C0103,W0621
 """
-Training of focused RNNs for discourse relation sense classification (CoNLL16st).
+Training of our model with focused RNNs for discourse relation sense classification (CoNLL16st).
 """
 __author__ = "GW [http://gw.tnode.com/] <gw.2017@ena.one>"
 __license__ = "GPLv3+"
@@ -39,7 +39,7 @@ argp = argparse.ArgumentParser(description=__doc__.strip().split("\n", 1)[0])
 argp.add_argument('model_dir',
     help="model directory to store configuration and best models")
 argp.add_argument('lang',
-    choices=["en", "zh"],
+    choices=["en", "ench", "zh", "zhch"],
     help="dataset language (en/zh)")
 argp.add_argument('train_dir',
     help="CoNLL16st dataset for training (directory with 'parses.json', 'relations.json', 'raw/')")
@@ -70,13 +70,13 @@ argp.add_argument('--optimizer', default="adam",
     choices=["sgd", "rmsprop", "adagrad", "adadelta", "adam", "adamax", "nadam"],
     help="optimization algorithm (%(default)s)")
 
-argp.add_argument('--arg1_len', type=int, default=100,  # word: en=100, zh=500; char: en=400, zh=900
+argp.add_argument('--arg1_len', type=int, default=500,  # word: en=100, zh=500; char: en=400, zh=900
     help="length of argument 1 text span (en=100, zh=500) (%(default)s)")
-argp.add_argument('--arg2_len', type=int, default=100,  # word: en=100, zh=500; char: en=400, zh=900
+argp.add_argument('--arg2_len', type=int, default=500,  # word: en=100, zh=500; char: en=400, zh=900
     help="length of argument 2 text span (en=100, zh=500) (%(default)s)")
 argp.add_argument('--conn_len', type=int, default=10,  # word: en/zh=10; char: en/zh=20
     help="length of connective text span (en/zh=10) (%(default)s)")
-argp.add_argument('--punc_len', type=int, default=0,
+argp.add_argument('--punc_len', type=int, default=2,  # en=0, zh=2
     help="length of punctuation text span (en=0, zh=2) (%(default)s)")
 argp.add_argument('--masking', type=str2bool, nargs='?', default=True,
     help="use masking to process variable-length inputs (%(default)s)")
@@ -139,7 +139,7 @@ argp.add_argument('--filter_apply', default="mul",
     choices=["mul", "sum", "mulsum"],
     help="how to apply the filtering RNN (%(default)s)")
 
-argp.add_argument('--rnn_num', type=int, default=12,  # zh: 12 for 10 senses, en: 8 for 15 senses
+argp.add_argument('--rnn_num', type=int, default=12,  # zh: 12 for 10+1 senses, en: 8
     help="number of focused RNNs (<= filter_dim) (%(default)s)")
 argp.add_argument('--rnn_type', default="lstm-fwd",
     choices=rnn_choices,
@@ -167,16 +167,20 @@ argp.add_argument('--rnn_dropout_merge', type=float, default=0.3,
     help="dropout at merge output of focused RNNs (%(default)s)")
 
 argp.add_argument('--final_dim', type=int, default=80,  # zh: 80 (4*rnn_dim)
-    help="size of fully-connected hidden layer (%(default)s)")
+    help="size of additional fully-connected hidden layer (%(default)s)")
 argp.add_argument('--final_act', default="SReLU",
     choices=["relu", "tanh", "sigmoid", "softmax", "softplus", "linear", "LeakyReLU", "PReLU", "ELU", "SReLU"],
-    help="activation function at fully-connected hidden layer (%(default)s)")
+    help="activation function at additional fully-connected hidden layer (%(default)s)")
 argp.add_argument('--final_dropout', type=float, default=0.3,
-    help="dropout at fully-connected hidden layer (%(default)s)")
+    help="dropout at additional fully-connected hidden layer (%(default)s)")
 
 args = argp.parse_args()
 args.backend = K._backend
 args.backend_theano = os.getenv("THEANO_FLAGS")
+if args.lang.endswith("ch"):
+    args.mode = 'char'
+    args.lang = args.lang[:-2]
+
 if args.filter_apply == "mulsum" and args.rnn_num > args.filter_dim / 2 and args.rnn_num > args.filter_append_dim / 2:
     raise Exception("Configuration error for 'mulsum': rnn_num ({}) <= filter_dim/2 ({})".format(args.rnn_num, args.filter_dim))
 elif args.rnn_num > args.filter_dim and args.rnn_num > args.filter_append_dim:

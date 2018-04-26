@@ -1,0 +1,27 @@
+[2018-04-10 03:15] configuration (ex/conll16st-v35word2vec-zh/test)
+[2018-04-10 03:15]   config 'arg1_len': 500
+[2018-04-10 03:15]   config 'arg2_len': 500
+[2018-04-10 03:15]   config 'backend': theano
+[2018-04-10 03:15]   config 'backend_theano': device=gpu,floatX=float32,nvcc.fastmath=True,lib.cnmem=0.45
+[2018-04-10 03:15]   config 'batch_size': 64
+[2018-04-10 03:15]   config 'conn_len': 10
+[2018-04-10 03:15]   config 'dataset_dir': data/conll16st-zh-01-08-2016-test
+[2018-04-10 03:15]   config 'filter_fn_name': None
+[2018-04-10 03:15]   config 'lang': zh
+[2018-04-10 03:15]   config 'mode': word
+[2018-04-10 03:15]   config 'model_dir': ex/conll16st-v35word2vec-zh
+[2018-04-10 03:15]   config 'normalization_mode': sample_aspect
+[2018-04-10 03:15]   config 'output_dir': ex/conll16st-v35word2vec-zh/test
+[2018-04-10 03:15]   config 'punc_len': 2
+[2018-04-10 03:15]   config 'rest': ['--words_trainable=True', '--words_dim=300', '--words2vec_txt=./data/word2vec-zh/zh-Gigaword-300.txt']
+[2018-04-10 03:15]   config 'snapshot_size': 2048
+[2018-04-10 03:15] load dataset for prediction (data/conll16st-zh-01-08-2016-test)
+[2018-04-10 03:15]   lang: zh, doc_ids: 30, words: 8008, rel_ids: 455, relation tokens: 20413
+[2018-04-10 03:15] load previous indexes (ex/conll16st-v35word2vec-zh/indexes.pkl)
+[2018-04-10 03:15]   words2id: 14785, target2id: 12
+[2018-04-10 03:15] load model (ex/conll16st-v35word2vec-zh)
+[2018-04-10 03:15] load previous weights (ex/conll16st-v35word2vec-zh/weights_val_all_f1.hdf5)
+[2018-04-10 03:15] prediction preparation
+[2018-04-10 03:15] make predictions (ex/conll16st-v35word2vec-zh/test/output.json)
+[2018-04-10 03:16] peek into filtering weights (ex/conll16st-v35word2vec-zh/test/peek.html)
+[2018-04-10 03:18] finished (ex/conll16st-v35word2vec-zh/test)

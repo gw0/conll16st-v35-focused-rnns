@@ -1,0 +1,111 @@
+class_name: Model
+config:
+  input_layers:
+  - [arg1_ids, 0, 0]
+  - [arg2_ids, 0, 0]
+  - [conn_ids, 0, 0]
+  layers:
+  - class_name: InputLayer
+    config:
+      batch_input_shape: !!python/tuple [null, 100]
+      input_dtype: int32
+      name: arg1_ids
+      sparse: false
+    inbound_nodes: []
+    name: arg1_ids
+  - class_name: InputLayer
+    config:
+      batch_input_shape: !!python/tuple [null, 100]
+      input_dtype: int32
+      name: arg2_ids
+      sparse: false
+    inbound_nodes: []
+    name: arg2_ids
+  - class_name: InputLayer
+    config:
+      batch_input_shape: !!python/tuple [null, 10]
+      input_dtype: int32
+      name: conn_ids
+      sparse: false
+    inbound_nodes: []
+    name: conn_ids
+  - class_name: Embedding
+    config:
+      W_constraint: null
+      W_regularizer: null
+      activity_regularizer: null
+      batch_input_shape: !!python/tuple [null, null]
+      dropout: 0.3
+      init: uniform
+      input_dim: 43918
+      input_dtype: int32
+      input_length: null
+      mask_zero: true
+      name: embedding_1
+      output_dim: 20
+      trainable: true
+    inbound_nodes:
+    - - [arg1_ids, 0, 0]
+    - - [arg2_ids, 0, 0]
+    - - [conn_ids, 0, 0]
+    name: embedding_1
+  - class_name: ShareableLSTM
+    config: {U_regularizer: null, W_regularizer: null, activation: tanh, b_regularizer: null,
+      consume_less: cpu, dropout_U: 0.0, dropout_W: 0.0, forget_bias_init: one, go_backwards: false,
+      init: glorot_uniform, inner_activation: hard_sigmoid, inner_init: orthogonal,
+      input_dim: 20, input_length: null, name: shareablelstm_1, output_dim: 160, return_sequences: false,
+      stateful: false, trainable: true, unroll: false}
+    inbound_nodes:
+    - - [embedding_1, 0, 0]
+    name: shareablelstm_1
+  - class_name: ShareableLSTM
+    config: {U_regularizer: null, W_regularizer: null, activation: tanh, b_regularizer: null,
+      consume_less: cpu, dropout_U: 0.0, dropout_W: 0.0, forget_bias_init: one, go_backwards: false,
+      init: glorot_uniform, inner_activation: hard_sigmoid, inner_init: orthogonal,
+      input_dim: 20, input_length: null, name: shareablelstm_3, output_dim: 160, return_sequences: false,
+      stateful: false, trainable: true, unroll: false}
+    inbound_nodes:
+    - - [embedding_1, 1, 0]
+    name: shareablelstm_3
+  - class_name: ShareableLSTM
+    config: {U_regularizer: null, W_regularizer: null, activation: tanh, b_regularizer: null,
+      consume_less: cpu, dropout_U: 0.0, dropout_W: 0.0, forget_bias_init: one, go_backwards: false,
+      init: glorot_uniform, inner_activation: hard_sigmoid, inner_init: orthogonal,
+      input_dim: 20, input_length: null, name: shareablelstm_5, output_dim: 160, return_sequences: false,
+      stateful: false, trainable: true, unroll: false}
+    inbound_nodes:
+    - - [embedding_1, 2, 0]
+    name: shareablelstm_5
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: concat
+      mode_type: raw
+      name: merge_1
+      output_mask: null
+      output_mask_type: raw
+      output_shape: null
+      output_shape_type: raw
+    inbound_nodes:
+    - - [shareablelstm_1, 0, 0]
+      - [shareablelstm_3, 0, 0]
+      - [shareablelstm_5, 0, 0]
+    name: merge_1
+  - class_name: Dense
+    config: {W_constraint: null, W_regularizer: null, activation: linear, activity_regularizer: null,
+      b_constraint: null, b_regularizer: null, bias: true, init: glorot_uniform, input_dim: 480,
+      name: dense_1, output_dim: 23, trainable: true}
+    inbound_nodes:
+    - - [merge_1, 0, 0]
+    name: dense_1
+  - class_name: Activation
+    config: {activation: softmax, name: target, trainable: true}
+    inbound_nodes:
+    - - [dense_1, 0, 0]
+    name: target
+  name: model_1
+  output_layers:
+  - [target, 0, 0]
+keras_version: 1.2.2

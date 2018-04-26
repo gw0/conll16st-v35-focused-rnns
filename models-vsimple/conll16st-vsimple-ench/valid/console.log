@@ -1,0 +1,25 @@
+[2018-03-08 04:28] configuration (ex/conll16st-vsimple-ench/valid)
+[2018-03-08 04:28]   config 'arg1_len': 400
+[2018-03-08 04:28]   config 'arg2_len': 400
+[2018-03-08 04:28]   config 'backend': theano
+[2018-03-08 04:28]   config 'backend_theano': device=gpu,floatX=float32,nvcc.fastmath=True,lib.cnmem=1
+[2018-03-08 04:28]   config 'batch_size': 64
+[2018-03-08 04:28]   config 'conn_len': 20
+[2018-03-08 04:28]   config 'dataset_dir': data/conll16st-en-03-29-16-dev
+[2018-03-08 04:28]   config 'filter_fn_name': None
+[2018-03-08 04:28]   config 'lang': en
+[2018-03-08 04:28]   config 'mode': char
+[2018-03-08 04:28]   config 'model_dir': ex/conll16st-vsimple-ench
+[2018-03-08 04:28]   config 'output_dir': ex/conll16st-vsimple-ench/valid
+[2018-03-08 04:28]   config 'punc_len': 0
+[2018-03-08 04:28]   config 'rest': ['--rnn_dim=160']
+[2018-03-08 04:28]   config 'snapshot_size': 2048
+[2018-03-08 04:28] load dataset for prediction (data/conll16st-en-03-29-16-dev)
+[2018-03-08 04:28]   lang: en, rel_ids: 1436
+[2018-03-08 04:28] load previous indexes (ex/conll16st-vsimple-ench/indexes.pkl)
+[2018-03-08 04:28]   words2id: 87, target2id: 23
+[2018-03-08 04:28] load model (ex/conll16st-vsimple-ench)
+[2018-03-08 04:28] load previous weights (ex/conll16st-vsimple-ench/weights_val_all_f1.hdf5)
+[2018-03-08 04:28] prediction preparation
+[2018-03-08 04:28] make predictions (ex/conll16st-vsimple-ench/valid/output.json)
+[2018-03-08 04:28] finished (ex/conll16st-vsimple-ench/valid)

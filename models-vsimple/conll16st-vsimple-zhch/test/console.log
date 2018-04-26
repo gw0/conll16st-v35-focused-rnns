@@ -1,0 +1,25 @@
+[2018-03-14 23:48] configuration (ex/conll16st-vsimple-zhch/test)
+[2018-03-14 23:48]   config 'arg1_len': 900
+[2018-03-14 23:48]   config 'arg2_len': 900
+[2018-03-14 23:48]   config 'backend': theano
+[2018-03-14 23:48]   config 'backend_theano': device=gpu,floatX=float32,nvcc.fastmath=True,lib.cnmem=1
+[2018-03-14 23:48]   config 'batch_size': 64
+[2018-03-14 23:48]   config 'conn_len': 20
+[2018-03-14 23:48]   config 'dataset_dir': data/conll16st-zh-01-08-2016-test
+[2018-03-14 23:48]   config 'filter_fn_name': None
+[2018-03-14 23:48]   config 'lang': zh
+[2018-03-14 23:48]   config 'mode': char
+[2018-03-14 23:48]   config 'model_dir': ex/conll16st-vsimple-zhch
+[2018-03-14 23:48]   config 'output_dir': ex/conll16st-vsimple-zhch/test
+[2018-03-14 23:48]   config 'punc_len': 2
+[2018-03-14 23:48]   config 'rest': ['--rnn_dim=240']
+[2018-03-14 23:48]   config 'snapshot_size': 2048
+[2018-03-14 23:48] load dataset for prediction (data/conll16st-zh-01-08-2016-test)
+[2018-03-14 23:48]   lang: zh, rel_ids: 455
+[2018-03-14 23:48] load previous indexes (ex/conll16st-vsimple-zhch/indexes.pkl)
+[2018-03-14 23:48]   words2id: 2859, target2id: 12
+[2018-03-14 23:48] load model (ex/conll16st-vsimple-zhch)
+[2018-03-14 23:48] load previous weights (ex/conll16st-vsimple-zhch/weights_val_all_f1.hdf5)
+[2018-03-14 23:48] prediction preparation
+[2018-03-14 23:48] make predictions (ex/conll16st-vsimple-zhch/test/output.json)
+[2018-03-14 23:48] finished (ex/conll16st-vsimple-zhch/test)

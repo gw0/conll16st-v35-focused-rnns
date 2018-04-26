@@ -1,0 +1,27 @@
+[2018-03-23 16:37] configuration (ex/conll16st-v35noaugm-en/blind)
+[2018-03-23 16:37]   config 'arg1_len': 100
+[2018-03-23 16:37]   config 'arg2_len': 100
+[2018-03-23 16:37]   config 'backend': theano
+[2018-03-23 16:37]   config 'backend_theano': device=gpu,floatX=float32,nvcc.fastmath=True,lib.cnmem=1
+[2018-03-23 16:37]   config 'batch_size': 64
+[2018-03-23 16:37]   config 'conn_len': 10
+[2018-03-23 16:37]   config 'dataset_dir': data/conll15st-en-03-29-16-blind-test
+[2018-03-23 16:37]   config 'filter_fn_name': None
+[2018-03-23 16:37]   config 'lang': en
+[2018-03-23 16:37]   config 'mode': word
+[2018-03-23 16:37]   config 'model_dir': ex/conll16st-v35noaugm-en
+[2018-03-23 16:37]   config 'normalization_mode': sample_aspect
+[2018-03-23 16:37]   config 'output_dir': ex/conll16st-v35noaugm-en/blind
+[2018-03-23 16:37]   config 'punc_len': 0
+[2018-03-23 16:37]   config 'rest': ['--original_positives=1', '--random_positives=0', '--random_negatives=0', '--filter_dim=8', '--rnn_num=8']
+[2018-03-23 16:37]   config 'snapshot_size': 2048
+[2018-03-23 16:37] load dataset for prediction (data/conll15st-en-03-29-16-blind-test)
+[2018-03-23 16:37]   lang: en, doc_ids: 71, words: 34621, rel_ids: 1209, relation tokens: 44203
+[2018-03-23 16:37] load previous indexes (ex/conll16st-v35noaugm-en/indexes.pkl)
+[2018-03-23 16:37]   words2id: 43918, target2id: 23
+[2018-03-23 16:37] load model (ex/conll16st-v35noaugm-en)
+[2018-03-23 16:37] load previous weights (ex/conll16st-v35noaugm-en/weights_val_all_f1.hdf5)
+[2018-03-23 16:37] prediction preparation
+[2018-03-23 16:37] make predictions (ex/conll16st-v35noaugm-en/blind/output.json)
+[2018-03-23 16:38] peek into filtering weights (ex/conll16st-v35noaugm-en/blind/peek.html)
+[2018-03-23 16:39] finished (ex/conll16st-v35noaugm-en/blind)

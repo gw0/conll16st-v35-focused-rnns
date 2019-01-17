@@ -259,7 +259,7 @@ if args.words2vec_bin or args.words2vec_txt:
 
 # show target class distribution
 log.info("target class distribution from training")
-for k, i in sorted(indexes['target2id'].items(), key=lambda (k, i): i):
+for k, i in sorted(indexes['target2id'].items(), key=lambda k, i: i):
     log.info("  class {} = '{}': {}".format(i, k, indexes_cnts['target2id'][k]))
 
 ### build model

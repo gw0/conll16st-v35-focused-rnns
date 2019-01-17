@@ -21,25 +21,25 @@
 #   LANG=zhch LANG_CONFIG='--mode=char --arg1_len=900 --arg2_len=900 --conn_len=20 --punc_len=2'
 #   LANG=ench LANG_CONFIG='--mode=char --arg1_len=400 --arg2_len=400 --conn_len=20 --punc_len=0'
 #
-# Our model:
+# Our model [v35]:
 #   (first set language configuration)
 #   NAME=conll16st-v35-$LANG
 #   zh: ./v35/run.sh ex/$NAME $LANG $LANG_CONFIG
 #   en: ./v35/run.sh ex/$NAME $LANG $LANG_CONFIG --filter_dim=8 --rnn_num=8
 #
-# Our model without data augmentation:
+# Our model without data augmentation [v35noaugm]:
 #   (first set language configuration)
 #   NAME=conll16st-v35noaugm-$LANG
 #   zh: ./v35/run.sh ex/$NAME $LANG $LANG_CONFIG --original_positives=1 --random_positives=0 --random_negatives=0
 #   en: ./v35/run.sh ex/$NAME $LANG $LANG_CONFIG --original_positives=1 --random_positives=0 --random_negatives=0 --filter_dim=8 --rnn_num=8
 #
-# Our model with pre-trained word embeddings (trainable, 300-dim):
+# Our model with pre-trained word embeddings (trainable, 300-dim) [v35word2vec]:
 #   (first set language configuration)
 #   NAME=conll16st-v35word2vec-$LANG
 #   zh: ./v35/run.sh ex/$NAME $LANG $LANG_CONFIG --words_trainable=True --words_dim=300 --words2vec_txt=./data/word2vec-zh/zh-Gigaword-300.txt
 #   en: ./v35/run.sh ex/$NAME $LANG $LANG_CONFIG --words_trainable=True --words_dim=300 --words2vec_bin=./data/word2vec-en/GoogleNews-vectors-negative300.bin.gz --filter_dim=8 --rnn_num=8
 #
-# Baseline model with simple LSTMs:
+# Baseline model with simple LSTMs [vsimple]:
 #   (first set language configuration)
 #   NAME=conll16st-vsimple-$LANG
 #   zh: ./vsimple/run.sh ex/$NAME $LANG $LANG_CONFIG --rnn_dim=$((12*20))

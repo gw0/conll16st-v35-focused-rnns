@@ -82,6 +82,7 @@ weights_val_all_f1_hdf5 = "{}/weights_val_all_f1.hdf5".format(args.model_dir)
 config_json = "{}/config.json".format(args.output_dir)
 console_log = "{}/console.log".format(args.output_dir)
 output_json = "{}/output.json".format(args.output_dir)
+output_proba_json = "{}/output_proba.json".format(args.output_dir)
 
 if not os.path.isdir(args.output_dir):  # create directory
     os.makedirs(args.output_dir)
@@ -125,18 +126,26 @@ log.info("load previous weights ({})".format(weights_val_all_f1_hdf5))
 model.load_weights(weights_val_all_f1_hdf5)  # weights of best validation loss
 
 ### prediction
-log.info("prediction preparation")
+log.info("make predictions")
 
 # prepare data
 test_size = (len(dataset['rel_ids']) + args.batch_size - 1) / args.batch_size * args.batch_size  # round up to multiple of batch_size
 x, _ = next(batch_generator(dataset, indexes, indexes_size, indexes_cnts, args.arg1_len, args.arg2_len, args.conn_len, args.punc_len, test_size, original_positives=1, random_positives=0, random_negatives=0))
 
 # make predictions
-log.info("make predictions ({})".format(output_json))
 y_pred = model.predict(x, batch_size=args.batch_size)
-relations = conv_to_output(dataset, x, y_pred, indexes, indexes_size)
 
+# save predictions
+log.info("save predictions ({})".format(output_json))
+relations = conv_to_output(dataset, x, y_pred, indexes, indexes_size, with_proba=False)
 f_out = codecs.open(output_json, mode='w', encoding='utf8')
+for relation in relations:
+    f_out.write(json.dumps(relation) + "\n")
+f_out.close()
+
+log.info("save predictions ({})".format(output_proba_json))
+relations = conv_to_output(dataset, x, y_pred, indexes, indexes_size, with_proba=True)
+f_out = codecs.open(output_proba_json, mode='w', encoding='utf8')
 for relation in relations:
     f_out.write(json.dumps(relation) + "\n")
 f_out.close()

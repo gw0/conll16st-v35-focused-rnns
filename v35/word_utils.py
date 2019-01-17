@@ -127,7 +127,7 @@ def load_word2vec(words2id, words2id_size, words_dim, words2vec_bin=None, words2
     return [init_weights]
 
 
-def conv_to_output(dataset, x, y, indexes, indexes_size):
+def conv_to_output(dataset, x, y, indexes, indexes_size, with_proba=False):
     """Convert model output to CoNLL16st relations output format."""
 
     SENSES = EN_SENSES
@@ -187,7 +187,28 @@ def conv_to_output(dataset, x, y, indexes, indexes_size):
             'Type': rel_type,
             'Sense': [rel_sense],
         }
+
+        # optional output for sense probabilities
+        if with_proba:
+            proba = {}
+            for t, j in indexes['target2id'].items():
+                if t == none_key or t == oov_key:  # fallback for invalid senses
+                    t = SENSES_DEFAULT
+                elif ':' in t:
+                    # predict sense with prepended type
+                    _, t = t.split(':', 1)
+
+                # add sense probability
+                try:
+                    proba[t] += float(target_totals[j])
+                except KeyError:
+                    proba[t] = float(target_totals[j])
+
+            relation['SenseProba'] = proba
+
         relations.append(relation)
+
+    relations.sort(key=lambda r: "{}:{}".format(r['DocID'], r['ID']))
     return relations
 
 

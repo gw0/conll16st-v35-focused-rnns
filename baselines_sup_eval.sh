@@ -36,9 +36,9 @@ for OUTPUT_DIR in models-baselines/*-$LANG/test; do ./conll16st_evaluation/tira_
 for OUTPUT_DIR in models-baselines/*-$LANG/blind; do ./conll16st_evaluation/tira_sup_eval.py "$BLIND_DIR" "$OUTPUT_DIR" "$OUTPUT_DIR" 2>&1 > $OUTPUT_DIR/tira_sup_eval.log; done
 
 # compute confusion matrix and Brier score
-for OUTPUT_DIR in models-baselines/*-$LANG/valid; do ./conll16st_evaluation/extra_sup_eval.py "$VALID_DIR" "$OUTPUT_DIR" 2>&1 > $OUTPUT_DIR/extra_sup_eval.log; done
-for OUTPUT_DIR in models-baselines/*-$LANG/test; do ./conll16st_evaluation/extra_sup_eval.py "$TEST_DIR" "$OUTPUT_DIR" 2>&1 > $OUTPUT_DIR/extra_sup_eval.log; done
-for OUTPUT_DIR in models-baselines/*-$LANG/blind; do ./conll16st_evaluation/extra_sup_eval.py "$BLIND_DIR" "$OUTPUT_DIR" 2>&1 > $OUTPUT_DIR/extra_sup_eval.log; done
+for OUTPUT_DIR in models-baselines/*-$LANG/valid; do ./conll16st_evaluation/extra_sup_eval.py "$VALID_DIR" "$OUTPUT_DIR" "$OUTPUT_DIR" 2>&1 > $OUTPUT_DIR/extra_sup_eval.log; done
+for OUTPUT_DIR in models-baselines/*-$LANG/test; do ./conll16st_evaluation/extra_sup_eval.py "$TEST_DIR" "$OUTPUT_DIR" "$OUTPUT_DIR" 2>&1 > $OUTPUT_DIR/extra_sup_eval.log; done
+for OUTPUT_DIR in models-baselines/*-$LANG/blind; do ./conll16st_evaluation/extra_sup_eval.py "$BLIND_DIR" "$OUTPUT_DIR" "$OUTPUT_DIR" 2>&1 > $OUTPUT_DIR/extra_sup_eval.log; done
 
 
 ###
@@ -73,6 +73,6 @@ for OUTPUT_DIR in models-baselines/*-$LANG/test; do ./conll16st_evaluation/tira_
 for OUTPUT_DIR in models-baselines/*-$LANG/blind; do ./conll16st_evaluation/tira_sup_eval.py "$BLIND_DIR" "$OUTPUT_DIR" "$OUTPUT_DIR" 2>&1 > $OUTPUT_DIR/tira_sup_eval.log; done
 
 # compute confusion matrix and Brier score
-for OUTPUT_DIR in models-baselines/*-$LANG/valid; do ./conll16st_evaluation/extra_sup_eval.py "$VALID_DIR" "$OUTPUT_DIR" 2>&1 > $OUTPUT_DIR/extra_sup_eval.log; done
-for OUTPUT_DIR in models-baselines/*-$LANG/test; do ./conll16st_evaluation/extra_sup_eval.py "$TEST_DIR" "$OUTPUT_DIR" 2>&1 > $OUTPUT_DIR/extra_sup_eval.log; done
-for OUTPUT_DIR in models-baselines/*-$LANG/blind; do ./conll16st_evaluation/extra_sup_eval.py "$BLIND_DIR" "$OUTPUT_DIR" 2>&1 > $OUTPUT_DIR/extra_sup_eval.log; done
+for OUTPUT_DIR in models-baselines/*-$LANG/valid; do ./conll16st_evaluation/extra_sup_eval.py "$VALID_DIR" "$OUTPUT_DIR" "$OUTPUT_DIR" 2>&1 > $OUTPUT_DIR/extra_sup_eval.log; done
+for OUTPUT_DIR in models-baselines/*-$LANG/test; do ./conll16st_evaluation/extra_sup_eval.py "$TEST_DIR" "$OUTPUT_DIR" "$OUTPUT_DIR" 2>&1 > $OUTPUT_DIR/extra_sup_eval.log; done
+for OUTPUT_DIR in models-baselines/*-$LANG/blind; do ./conll16st_evaluation/extra_sup_eval.py "$BLIND_DIR" "$OUTPUT_DIR" "$OUTPUT_DIR" 2>&1 > $OUTPUT_DIR/extra_sup_eval.log; done

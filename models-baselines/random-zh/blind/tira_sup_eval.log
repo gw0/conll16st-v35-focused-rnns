@@ -1,0 +1,115 @@
+Evaluation for all discourse relations
+Explicit connectives         : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 1 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 2 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg1 Arg2 extractor combined : Precision 1.0000 Recall 1.0000 F1 1.0000
+Sense classification--------------
+Alternative  precision 0.0096	recall 0.1176	F1 0.0177
+Causation    precision 0.0400	recall 0.0784	F1 0.0530
+Conditional  precision 0.0378	recall 0.1228	F1 0.0579
+Conjunction  precision 0.5256	recall 0.0929	F1 0.1579
+Contrast     precision 0.0909	recall 0.0986	F1 0.0946
+EntRel       precision 0.0524	recall 0.1264	F1 0.0741
+Expansion    precision 0.1514	recall 0.1222	F1 0.1352
+Progression  precision 0.0095	recall 0.2857	F1 0.0184
+Purpose      precision 0.0181	recall 0.1081	F1 0.0310
+Temporal     precision 0.0396	recall 0.0842	F1 0.0539
+*Micro-Average precision 0.0995	recall 0.0995	F1 0.0995
+Overall parser performance --------------
+Precision 0.0995 Recall 0.0995 F1 0.0995
+Evaluation for explicit discourse relations only
+!! negative: match and predicted sense not in alphabet (5, EntRel)
+!! negative: match and predicted sense not in alphabet (82, EntRel)
+!! negative: match and predicted sense not in alphabet (108, EntRel)
+!! negative: match and predicted sense not in alphabet (112, EntRel)
+!! negative: match and predicted sense not in alphabet (155, EntRel)
+!! negative: match and predicted sense not in alphabet (214, EntRel)
+!! negative: match and predicted sense not in alphabet (222, EntRel)
+!! negative: match and predicted sense not in alphabet (230, EntRel)
+!! negative: match and predicted sense not in alphabet (280, EntRel)
+!! negative: match and predicted sense not in alphabet (343, EntRel)
+!! negative: match and predicted sense not in alphabet (345, EntRel)
+!! negative: match and predicted sense not in alphabet (420, EntRel)
+!! negative: match and predicted sense not in alphabet (469, EntRel)
+!! negative: match and predicted sense not in alphabet (530, EntRel)
+!! negative: match and predicted sense not in alphabet (539, EntRel)
+!! negative: match and predicted sense not in alphabet (562, EntRel)
+!! negative: match and predicted sense not in alphabet (690, EntRel)
+!! negative: match and predicted sense not in alphabet (757, EntRel)
+!! negative: match and predicted sense not in alphabet (822, EntRel)
+!! negative: match and predicted sense not in alphabet (837, EntRel)
+!! negative: match and predicted sense not in alphabet (861, EntRel)
+!! negative: match and predicted sense not in alphabet (876, EntRel)
+!! negative: match and predicted sense not in alphabet (937, EntRel)
+!! negative: match and predicted sense not in alphabet (993, EntRel)
+!! negative: match and predicted sense not in alphabet (1005, EntRel)
+!! negative: match and predicted sense not in alphabet (1041, EntRel)
+!! negative: match and predicted sense not in alphabet (1159, EntRel)
+!! negative: match and predicted sense not in alphabet (1199, EntRel)
+!! negative: match and predicted sense not in alphabet (1239, EntRel)
+!! negative: match and predicted sense not in alphabet (1316, EntRel)
+!! negative: match and predicted sense not in alphabet (1328, EntRel)
+!! negative: match and predicted sense not in alphabet (1333, EntRel)
+!! negative: match and predicted sense not in alphabet (1339, EntRel)
+!! negative: match and predicted sense not in alphabet (1358, EntRel)
+!! negative: match and predicted sense not in alphabet (1409, EntRel)
+!! negative: match and predicted sense not in alphabet (1440, EntRel)
+!! negative: match and predicted sense not in alphabet (1451, EntRel)
+!! negative: match and predicted sense not in alphabet (1494, EntRel)
+!! negative: match and predicted sense not in alphabet (1507, EntRel)
+!! negative: match and predicted sense not in alphabet (1525, EntRel)
+!! negative: match and predicted sense not in alphabet (1545, EntRel)
+!! negative: match and predicted sense not in alphabet (1624, EntRel)
+!! negative: match and predicted sense not in alphabet (1634, EntRel)
+!! negative: match and predicted sense not in alphabet (1682, EntRel)
+!! negative: match and predicted sense not in alphabet (1695, EntRel)
+!! negative: match and predicted sense not in alphabet (1713, EntRel)
+!! negative: match and predicted sense not in alphabet (1740, EntRel)
+!! negative: match and predicted sense not in alphabet (1752, EntRel)
+!! negative: match and predicted sense not in alphabet (1778, EntRel)
+!! negative: match and predicted sense not in alphabet (1799, EntRel)
+!! negative: match and predicted sense not in alphabet (1839, EntRel)
+!! negative: match and predicted sense not in alphabet (1855, EntRel)
+!! negative: match and predicted sense not in alphabet (1891, EntRel)
+!! negative: match and predicted sense not in alphabet (1914, EntRel)
+!! negative: match and predicted sense not in alphabet (2018, EntRel)
+!! negative: match and predicted sense not in alphabet (2027, EntRel)
+!! negative: match and predicted sense not in alphabet (2060, EntRel)
+!! negative: match and predicted sense not in alphabet (2082, EntRel)
+!! negative: match and predicted sense not in alphabet (2093, EntRel)
+Explicit connectives         : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 1 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 2 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg1 Arg2 extractor combined : Precision 1.0000 Recall 1.0000 F1 1.0000
+Sense classification--------------
+Alternative  precision 0.0339	recall 0.1333	F1 0.0541
+Causation    precision 0.0862	recall 0.0926	F1 0.0893
+Conditional  precision 0.1176	recall 0.1224	F1 0.1200
+Conjunction  precision 0.1964	recall 0.0675	F1 0.1005
+Contrast     precision 0.3000	recall 0.0893	F1 0.1376
+Expansion    precision 0.0500	recall 0.1200	F1 0.0706
+Progression  precision 0.0169	recall 0.3333	F1 0.0323
+Purpose      precision 0.0154	recall 0.1111	F1 0.0270
+Temporal     precision 0.1224	recall 0.0750	F1 0.0930
+*Micro-Average precision 0.0986	recall 0.0883	F1 0.0932
+Overall parser performance --------------
+Precision 0.0986 Recall 0.0883 F1 0.0932
+Evaluation for non-explicit discourse relations only (Implicit, EntRel, AltLex)
+Explicit connectives         : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 1 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 2 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg1 Arg2 extractor combined : Precision 1.0000 Recall 1.0000 F1 1.0000
+Sense classification--------------
+Alternative  precision 0.0000	recall 0.0000	F1 0.0000
+Causation    precision 0.0211	recall 0.0625	F1 0.0316
+Conditional  precision 0.0075	recall 0.1250	F1 0.0141
+Conjunction  precision 0.6415	recall 0.0969	F1 0.1683
+Contrast     precision 0.0331	recall 0.1333	F1 0.0531
+EntRel       precision 0.0728	recall 0.1264	F1 0.0924
+Expansion    precision 0.1899	recall 0.1224	F1 0.1489
+Progression  precision 0.0066	recall 0.2500	F1 0.0129
+Purpose      precision 0.0192	recall 0.1071	F1 0.0326
+Temporal     precision 0.0131	recall 0.1333	F1 0.0238
+*Micro-Average precision 0.1036	recall 0.1036	F1 0.1036
+Overall parser performance --------------
+Precision 0.1036 Recall 0.1036 F1 0.1036

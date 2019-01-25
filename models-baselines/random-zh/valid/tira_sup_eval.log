@@ -1,0 +1,194 @@
+Evaluation for all discourse relations
+!! negative: match and predicted sense not in alphabet (5508, Alternative)
+!! negative: match and predicted sense not in alphabet (5522, Alternative)
+!! negative: match and predicted sense not in alphabet (5523, Alternative)
+!! negative: match and predicted sense not in alphabet (5532, Alternative)
+!! negative: match and predicted sense not in alphabet (5538, Alternative)
+!! negative: match and predicted sense not in alphabet (5550, Alternative)
+!! negative: match and predicted sense not in alphabet (5569, Alternative)
+!! negative: match and predicted sense not in alphabet (5573, Alternative)
+!! negative: match and predicted sense not in alphabet (5584, Alternative)
+!! negative: match and predicted sense not in alphabet (5596, Alternative)
+!! negative: match and predicted sense not in alphabet (5597, Alternative)
+!! negative: match and predicted sense not in alphabet (5599, Alternative)
+!! negative: match and predicted sense not in alphabet (5600, Alternative)
+!! negative: match and predicted sense not in alphabet (5629, Alternative)
+!! negative: match and predicted sense not in alphabet (5641, Alternative)
+!! negative: match and predicted sense not in alphabet (5644, Alternative)
+!! negative: match and predicted sense not in alphabet (5663, Alternative)
+!! negative: match and predicted sense not in alphabet (5665, Alternative)
+!! negative: match and predicted sense not in alphabet (5666, Alternative)
+!! negative: match and predicted sense not in alphabet (5691, Alternative)
+!! negative: match and predicted sense not in alphabet (5694, Alternative)
+!! negative: match and predicted sense not in alphabet (5702, Alternative)
+!! negative: match and predicted sense not in alphabet (5713, Alternative)
+!! negative: match and predicted sense not in alphabet (5722, Alternative)
+!! negative: match and predicted sense not in alphabet (5724, Alternative)
+!! negative: match and predicted sense not in alphabet (5734, Alternative)
+!! negative: match and predicted sense not in alphabet (5764, Alternative)
+!! negative: match and predicted sense not in alphabet (5765, Alternative)
+!! negative: match and predicted sense not in alphabet (5768, Alternative)
+!! negative: match and predicted sense not in alphabet (5774, Alternative)
+!! negative: match and predicted sense not in alphabet (5792, Alternative)
+!! negative: match and predicted sense not in alphabet (5806, Alternative)
+!! negative: match and predicted sense not in alphabet (5810, Alternative)
+!! negative: match and predicted sense not in alphabet (5821, Alternative)
+!! negative: match and predicted sense not in alphabet (5823, Alternative)
+!! negative: match and predicted sense not in alphabet (5841, Alternative)
+!! negative: match and predicted sense not in alphabet (5842, Alternative)
+!! negative: match and predicted sense not in alphabet (5843, Alternative)
+!! negative: match and predicted sense not in alphabet (5844, Alternative)
+!! negative: match and predicted sense not in alphabet (5849, Alternative)
+!! negative: match and predicted sense not in alphabet (5855, Alternative)
+!! negative: match and predicted sense not in alphabet (5859, Alternative)
+!! negative: match and predicted sense not in alphabet (5864, Alternative)
+!! negative: match and predicted sense not in alphabet (5869, Alternative)
+Explicit connectives         : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 1 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 2 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg1 Arg2 extractor combined : Precision 1.0000 Recall 1.0000 F1 1.0000
+Sense classification--------------
+Causation    precision 0.0238	recall 0.0455	F1 0.0312
+Conditional  precision 0.0800	recall 0.3333	F1 0.1290
+Conjunction  precision 0.5676	recall 0.0950	F1 0.1628
+Contrast     precision 0.0000	recall 0.0000	F1 0.0000
+EntRel       precision 0.1538	recall 0.1200	F1 0.1348
+Expansion    precision 0.1556	recall 0.1207	F1 0.1359
+Progression  precision 0.0000	recall 0.0000	F1 0.0000
+Purpose      precision 0.0000	recall 0.0000	F1 0.0000
+Temporal     precision 0.0278	recall 0.1111	F1 0.0444
+*Micro-Average precision 0.1121	recall 0.0992	F1 0.1053
+Overall parser performance --------------
+Precision 0.1121 Recall 0.0992 F1 0.1053
+Evaluation for explicit discourse relations only
+!! negative: match and predicted sense not in alphabet (5497, EntRel)
+!! negative: match and predicted sense not in alphabet (5542, EntRel)
+!! negative: match and predicted sense not in alphabet (5573, Alternative)
+!! negative: match and predicted sense not in alphabet (5597, Alternative)
+!! negative: match and predicted sense not in alphabet (5599, Alternative)
+!! negative: match and predicted sense not in alphabet (5629, Alternative)
+!! negative: match and predicted sense not in alphabet (5650, EntRel)
+!! negative: match and predicted sense not in alphabet (5702, Alternative)
+!! negative: match and predicted sense not in alphabet (5709, EntRel)
+!! negative: match and predicted sense not in alphabet (5716, EntRel)
+!! negative: match and predicted sense not in alphabet (5724, Alternative)
+!! negative: match and predicted sense not in alphabet (5734, Alternative)
+!! negative: match and predicted sense not in alphabet (5787, EntRel)
+!! negative: match and predicted sense not in alphabet (5838, EntRel)
+!! negative: match and predicted sense not in alphabet (5849, Alternative)
+!! negative: match and predicted sense not in alphabet (5870, EntRel)
+Explicit connectives         : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 1 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 2 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg1 Arg2 extractor combined : Precision 1.0000 Recall 1.0000 F1 1.0000
+Sense classification--------------
+Causation    precision 0.0000	recall 0.0000	F1 0.0000
+Conditional  precision 0.2857	recall 0.4000	F1 0.3333
+Conjunction  precision 0.4000	recall 0.0625	F1 0.1081
+Contrast     precision 0.0000	recall 0.0000	F1 0.0000
+Expansion    precision 0.2857	recall 0.2222	F1 0.2500
+Progression  precision 0.0000	recall 0.0000	F1 0.0000
+Purpose      precision 0.0000	recall 0.0000	F1 0.0000
+Temporal     precision 0.1000	recall 0.1111	F1 0.1053
+*Micro-Average precision 0.1148	recall 0.0909	F1 0.1014
+Overall parser performance --------------
+Precision 0.1148 Recall 0.0909 F1 0.1014
+Evaluation for non-explicit discourse relations only (Implicit, EntRel, AltLex)
+!! negative: match and predicted sense not in alphabet (5506, Temporal)
+!! negative: match and predicted sense not in alphabet (5508, Alternative)
+!! negative: match and predicted sense not in alphabet (5519, Temporal)
+!! negative: match and predicted sense not in alphabet (5520, Temporal)
+!! negative: match and predicted sense not in alphabet (5522, Alternative)
+!! negative: match and predicted sense not in alphabet (5523, Alternative)
+!! negative: match and predicted sense not in alphabet (5525, Temporal)
+!! negative: match and predicted sense not in alphabet (5532, Alternative)
+!! negative: match and predicted sense not in alphabet (5538, Alternative)
+!! negative: match and predicted sense not in alphabet (5549, Progression)
+!! negative: match and predicted sense not in alphabet (5550, Alternative)
+!! negative: match and predicted sense not in alphabet (5565, Progression)
+!! negative: match and predicted sense not in alphabet (5569, Alternative)
+!! negative: match and predicted sense not in alphabet (5570, Progression)
+!! negative: match and predicted sense not in alphabet (5581, Temporal)
+!! negative: match and predicted sense not in alphabet (5584, Alternative)
+!! negative: match and predicted sense not in alphabet (5596, Alternative)
+!! negative: match and predicted sense not in alphabet (5600, Alternative)
+!! negative: match and predicted sense not in alphabet (5609, Progression)
+!! negative: match and predicted sense not in alphabet (5614, Temporal)
+!! negative: match and predicted sense not in alphabet (5624, Temporal)
+!! negative: match and predicted sense not in alphabet (5627, Progression)
+!! negative: match and predicted sense not in alphabet (5630, Temporal)
+!! negative: match and predicted sense not in alphabet (5631, Progression)
+!! negative: match and predicted sense not in alphabet (5632, Temporal)
+!! negative: match and predicted sense not in alphabet (5638, Temporal)
+!! negative: match and predicted sense not in alphabet (5641, Alternative)
+!! negative: match and predicted sense not in alphabet (5644, Alternative)
+!! negative: match and predicted sense not in alphabet (5645, Temporal)
+!! negative: match and predicted sense not in alphabet (5648, Progression)
+!! negative: match and predicted sense not in alphabet (5663, Alternative)
+!! negative: match and predicted sense not in alphabet (5665, Alternative)
+!! negative: match and predicted sense not in alphabet (5666, Alternative)
+!! negative: match and predicted sense not in alphabet (5669, Progression)
+!! negative: match and predicted sense not in alphabet (5678, Progression)
+!! negative: match and predicted sense not in alphabet (5684, Progression)
+!! negative: match and predicted sense not in alphabet (5687, Progression)
+!! negative: match and predicted sense not in alphabet (5688, Temporal)
+!! negative: match and predicted sense not in alphabet (5689, Temporal)
+!! negative: match and predicted sense not in alphabet (5690, Progression)
+!! negative: match and predicted sense not in alphabet (5691, Alternative)
+!! negative: match and predicted sense not in alphabet (5694, Alternative)
+!! negative: match and predicted sense not in alphabet (5703, Progression)
+!! negative: match and predicted sense not in alphabet (5704, Temporal)
+!! negative: match and predicted sense not in alphabet (5711, Temporal)
+!! negative: match and predicted sense not in alphabet (5713, Alternative)
+!! negative: match and predicted sense not in alphabet (5720, Temporal)
+!! negative: match and predicted sense not in alphabet (5722, Alternative)
+!! negative: match and predicted sense not in alphabet (5733, Temporal)
+!! negative: match and predicted sense not in alphabet (5743, Progression)
+!! negative: match and predicted sense not in alphabet (5745, Progression)
+!! negative: match and predicted sense not in alphabet (5746, Temporal)
+!! negative: match and predicted sense not in alphabet (5756, Temporal)
+!! negative: match and predicted sense not in alphabet (5760, Temporal)
+!! negative: match and predicted sense not in alphabet (5761, Progression)
+!! negative: match and predicted sense not in alphabet (5764, Alternative)
+!! negative: match and predicted sense not in alphabet (5765, Alternative)
+!! negative: match and predicted sense not in alphabet (5767, Temporal)
+!! negative: match and predicted sense not in alphabet (5768, Alternative)
+!! negative: match and predicted sense not in alphabet (5773, Temporal)
+!! negative: match and predicted sense not in alphabet (5774, Alternative)
+!! negative: match and predicted sense not in alphabet (5781, Progression)
+!! negative: match and predicted sense not in alphabet (5792, Alternative)
+!! negative: match and predicted sense not in alphabet (5793, Temporal)
+!! negative: match and predicted sense not in alphabet (5796, Progression)
+!! negative: match and predicted sense not in alphabet (5806, Alternative)
+!! negative: match and predicted sense not in alphabet (5810, Alternative)
+!! negative: match and predicted sense not in alphabet (5817, Temporal)
+!! negative: match and predicted sense not in alphabet (5821, Alternative)
+!! negative: match and predicted sense not in alphabet (5823, Alternative)
+!! negative: match and predicted sense not in alphabet (5827, Progression)
+!! negative: match and predicted sense not in alphabet (5830, Temporal)
+!! negative: match and predicted sense not in alphabet (5841, Alternative)
+!! negative: match and predicted sense not in alphabet (5842, Alternative)
+!! negative: match and predicted sense not in alphabet (5843, Alternative)
+!! negative: match and predicted sense not in alphabet (5844, Alternative)
+!! negative: match and predicted sense not in alphabet (5845, Progression)
+!! negative: match and predicted sense not in alphabet (5853, Temporal)
+!! negative: match and predicted sense not in alphabet (5855, Alternative)
+!! negative: match and predicted sense not in alphabet (5859, Alternative)
+!! negative: match and predicted sense not in alphabet (5864, Alternative)
+!! negative: match and predicted sense not in alphabet (5869, Alternative)
+!! negative: match and predicted sense not in alphabet (5874, Progression)
+Explicit connectives         : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 1 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 2 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg1 Arg2 extractor combined : Precision 1.0000 Recall 1.0000 F1 1.0000
+Sense classification--------------
+Causation    precision 0.0286	recall 0.0833	F1 0.0426
+Conditional  precision 0.0000	recall 0.0000	F1 0.0000
+Conjunction  precision 0.5938	recall 0.1005	F1 0.1719
+Contrast     precision 0.0000	recall 0.0000	F1 0.0000
+EntRel       precision 0.1935	recall 0.1200	F1 0.1481
+Expansion    precision 0.1316	recall 0.1020	F1 0.1149
+Purpose      precision 0.0000	recall 0.0000	F1 0.0000
+*Micro-Average precision 0.1390	recall 0.1013	F1 0.1172
+Overall parser performance --------------
+Precision 0.1390 Recall 0.1013 F1 0.1172

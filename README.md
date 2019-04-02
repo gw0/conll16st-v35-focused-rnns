@@ -1,7 +1,7 @@
 conll16st-v35-focused-rnns
 ==========================
 
-System implementation of the PLOS ONE paper "*Sense Classification of Shallow Discourse Relations with focused RNNs*", that follows the official CoNLL 2016 Shared Task definition. Implemented in Python 2.7 using Keras 1.2.2 and Numpy.
+System implementation of the PLOS ONE paper "*Sense Classification of Shallow Discourse Relations with focused RNNs*", that follows the official CoNLL 2016 Shared Task definition. Implemented in Python 2.7 using Keras 1.2.2 and NumPy.
 
 **Note:** Same implementation is used on English and Chinese datasets on word and character levels.
 
@@ -12,7 +12,7 @@ System implementation of the PLOS ONE paper "*Sense Classification of Shallow Di
 Usage
 -----
 
-Although the source code can run on *Ubuntu 16.04* in *Python 2.7* with *Keras 1.2.2*, *Numpy*, and some other Python libraries, we prepared a *Docker* image to simplify the preparation of the environment (see `./Dockerfile` for details).
+Although the source code can run on *Ubuntu 16.04* in *Python 2.7* with *Keras 1.2.2*, *NumPy*, and some other Python libraries, we prepared a *Docker* image to simplify the preparation of the environment (see `./Dockerfile` for details).
 
 Requirements:
 
@@ -76,11 +76,13 @@ Pre-trained models for English and Chinese datasets at word and character levels
 $ ./v35/classify.py <model_dir> [en|zh] <dataset_dir> <output_dir> [extra_param]
 ```
 
+For exact command lines of all pre-trained models and experiments see `./Dockerfile`. Due to size constraints on GitHub, we had to remove all pre-trained weights for ablation study and timing measurements, but the console logs and evaluation results were left. All additional evaluation scripts are in `./extra/`.
+
 
 License
 =======
 
-Copyright &copy; 2016-2018 *gw0* [<http://gw.tnode.com/>] &lt;<gw.2018@ena.one>&gt;
+Copyright &copy; 2016-2019 *gw0* [<http://gw.tnode.com/>] &lt;<gw.2019@ena.one>&gt;
 
 This code is licensed under the [GNU Affero General Public License 3.0+](LICENSE_AGPL-3.0.txt) (*AGPL-3.0+*). Note that it is mandatory to make all modifications and complete source code publicly available to any user.
 

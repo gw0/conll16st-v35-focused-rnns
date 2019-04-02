@@ -4,6 +4,7 @@
 *.tgz
 /venv
 /data
-/ex*/
+/ex/
+/models-*/*/*.pkl
 /models-*/*/*.hdf5
 /models-*/*/*/peek.html

@@ -15,7 +15,7 @@ EN_SENSES_DEFAULT = 'Expansion.Conjunction'
 ZH_SENSES_DEFAULT = 'Conjunction'
 
 
-def build_index(sequences, max_new=None, min_count=1, index=None, vocab_start=2, none_key=None, none_ids=0, oov_key="", oov_ids=1):
+def build_index(sequences, min_count=1, index=None, vocab_start=2, vocab_crop=None, none_key=None, none_ids=0, oov_key="", oov_ids=1):
     """Build vocabulary index from dicts or lists of strings (reserved ids: 0 = none/padding, 1 = out-of-vocabulary)."""
     if index is None:
         index = {}
@@ -45,8 +45,8 @@ def build_index(sequences, max_new=None, min_count=1, index=None, vocab_start=2,
 
     # rank strings by decreasing occurrences and use as index
     index_rev = sorted(cnts, key=cnts.get, reverse=True)
-    if max_new is not None:
-        index_rev = index_rev[:max_new]  # limit amount of added strings
+    if vocab_crop is not None:
+        index_rev = index_rev[:vocab_crop]  # limit number of added strings
 
     # mapping of strings to vocabulary ids
     index.update([ (k, i) for i, k in enumerate(index_rev, start=vocab_start) ])
@@ -267,13 +267,13 @@ def load_data(dataset_dir, lang, filter_fn_name):
     return dataset
 
 
-def build_indexes(dataset):
+def build_indexes(dataset, words_crop=None):
     """Build indexes for word-level mode."""
 
     indexes = {}
     indexes_size = {}
     indexes_cnts = {}
-    indexes['words2id'], indexes_size['words2id'], indexes_cnts['words2id'] = build_index(dataset['words'], min_count=1, vocab_start=2)  # use all words
+    indexes['words2id'], indexes_size['words2id'], indexes_cnts['words2id'] = build_index(dataset['words'], min_count=1, vocab_start=2, vocab_crop=words_crop)  # use all words
     indexes['target2id'], indexes_size['target2id'], indexes_cnts['target2id'] = build_index(dataset['target'], min_count=2)  # ignore less frequent and partial senses
     return indexes, indexes_size, indexes_cnts
 

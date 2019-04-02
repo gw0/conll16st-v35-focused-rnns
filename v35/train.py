@@ -13,6 +13,7 @@ import json
 import logging
 import os
 import sys
+import time
 from keras.utils.visualize_util import plot as plot_model
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 from keras.layers import K
@@ -23,6 +24,7 @@ from model import build_model
 
 
 ### debugging
+time_start = time.time()  # for time measurement
 sys.excepthook = debugger  # attach debugger on error
 sys.stdout = Tee([sys.stdout])
 sys.stderr = Tee([sys.stderr])
@@ -174,6 +176,11 @@ argp.add_argument('--final_act', default="SReLU",
 argp.add_argument('--final_dropout', type=float, default=0.3,
     help="dropout at additional fully-connected hidden layer (%(default)s)")
 
+argp.add_argument('--input_size', type=int, default=None,
+    help="limit number of input samples (%(default)s)")
+argp.add_argument('--words_crop', type=int, default=None,
+    help="limit words vocabulary size (%(default)s)")
+
 args = argp.parse_args()
 args.backend = K._backend
 args.backend_theano = os.getenv("THEANO_FLAGS")
@@ -231,6 +238,8 @@ elif args.mode == "char":  # import character-level mode
 ### load datasets
 log.info("load dataset for training ({})".format(args.train_dir))
 train = load_data(args.train_dir, args.lang, args.filter_fn_name)
+if args.input_size is not None:
+    train['rel_ids'] = train['rel_ids'][:args.input_size]
 log.info("  " + train.summary())
 
 log.info("load dataset for validation ({})".format(args.valid_dir))
@@ -240,7 +249,7 @@ log.info("  " + valid.summary())
 ### build indexes
 if not os.path.isfile(indexes_pkl) or not os.path.isfile(indexes_size_pkl):
     log.info("build indexes from training")
-    indexes, indexes_size, indexes_cnts = build_indexes(train)
+    indexes, indexes_size, indexes_cnts = build_indexes(train, words_crop=args.words_crop)
     save_to_pkl(indexes_pkl, indexes)
     save_to_pkl(indexes_size_pkl, indexes_size)
     save_to_pkl(indexes_cnts_pkl, indexes_cnts)
@@ -259,8 +268,9 @@ if args.words2vec_bin or args.words2vec_txt:
 
 # show target class distribution
 log.info("target class distribution from training")
-for k, i in sorted(indexes['target2id'].items(), key=lambda k, i: i):
+for k, i in sorted(indexes['target2id'].items(), key=lambda (k, i): i):
     log.info("  class {} = '{}': {}".format(i, k, indexes_cnts['target2id'][k]))
+time_loaded = time.time()  # for time measurement
 
 ### build model
 log.info("build model")
@@ -302,9 +312,12 @@ if args.epochs_patience >= 0:
     callbacks.append(EarlyStopping(monitor='val_all_f1', mode='max', patience=args.epochs_patience))
 
 # train model
+time_prepared = time.time()  # for time measurement
 log.info("train model ({})".format(args.model_dir))
 history = model.fit_generator(train_iter, nb_epoch=args.epochs, samples_per_epoch=samples_per_epoch, validation_data=valid_snapshot, callbacks=callbacks, verbose=1)
 log.info("training finished ({})".format(args.model_dir))
+time_trained = time.time()  # for time measurement
+time_epoch_cnt = float(len(history.history['loss'])) * args.epochs_ratio  # number of real epochs
 
 # display best results again
 with open(history_json, 'a') as f:  # dump training history
@@ -319,3 +332,15 @@ if all(k in best_order for k in history.history.keys()):
     log.info("best_val_loss: {} - ".format(best_i) + " - ".join([ "{}: {:.4f}".format(k, history.history[k][best_i]) for k in best_order ]))
     best_i = max(range(len(history.history['val_all_f1'])), key=history.history["val_all_f1"].__getitem__)
     log.info("best_val_all_f1: {} - ".format(best_i) + " - ".join([ "{}: {:.4f}".format(k, history.history[k][best_i]) for k in best_order ]))
+
+# display time measurement
+time_info = {
+    'loaded': time_loaded - time_start,
+    'prepared': time_prepared - time_loaded,
+    'trained': time_trained - time_prepared,
+    'epoch': (time_trained - time_prepared) / time_epoch_cnt,
+    'epoch_cnt': time_epoch_cnt,
+    'epoch_samples': float(samples_per_epoch) / args.epochs_ratio,
+}
+time_order = ['loaded', 'prepared', 'trained', 'epoch', 'epoch_cnt', 'epoch_samples']
+log.info("time: " + " - ".join([ "{}: {:.4f}".format(k, time_info[k]) for k in time_order ]))

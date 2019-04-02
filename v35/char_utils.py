@@ -82,13 +82,13 @@ def load_data(dataset_dir, lang, filter_fn_name):
     return dataset
 
 
-def build_indexes(dataset):
+def build_indexes(dataset, words_crop=None):
     """Build indexes for character-level mode."""
 
     indexes = {}
     indexes_size = {}
     indexes_cnts = {}
-    indexes['words2id'], indexes_size['words2id'], indexes_cnts['words2id'] = build_index([ list(r['Arg1']['RawText'] + r['Arg2']['RawText'] + r['Connective']['RawText'] + r['Punctuation']['RawText']) for r in dataset['relations_gold'].values() ], min_count=1, vocab_start=2)  # use all characters
+    indexes['words2id'], indexes_size['words2id'], indexes_cnts['words2id'] = build_index([ list(r['Arg1']['RawText'] + r['Arg2']['RawText'] + r['Connective']['RawText'] + r['Punctuation']['RawText']) for r in dataset['relations_gold'].values() ], min_count=1, vocab_start=2, vocab_crop=words_crop)  # use all characters
     indexes['target2id'], indexes_size['target2id'], indexes_cnts['target2id'] = build_index(dataset['target'], min_count=2)  # ignore less frequent and partial senses
     return indexes, indexes_size, indexes_cnts
 

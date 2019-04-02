@@ -13,6 +13,7 @@ import json
 import logging
 import os
 import sys
+import time
 import numpy as np
 from keras.models import model_from_yaml
 from keras.layers import K
@@ -23,6 +24,7 @@ from word_utils import conv_to_output, decode_category
 
 
 ### debugging
+time_start = time.time()  # for time measurement
 sys.excepthook = debugger  # attach debugger on error
 sys.stdout = Tee([sys.stdout])
 sys.stderr = Tee([sys.stderr])
@@ -65,6 +67,9 @@ argp.add_argument('--punc_len', type=int, default=0,
 argp.add_argument('--normalization_mode', default="sample_aspect",
     choices=["none", "sample", "sample_aspect", "span", "aspect", "word"],
     help="normalization axis for visualization (%(default)s)")
+
+argp.add_argument('--input_size', type=int, default=None,
+    help="limit number of input samples (%(default)s)")
 
 args, unknown_args = argp.parse_known_args()
 args.backend = K._backend
@@ -113,6 +118,8 @@ elif args.mode == "char":  # import character-level mode
 ### load datasets
 log.info("load dataset for prediction ({})".format(args.dataset_dir))
 dataset = load_data(args.dataset_dir, args.lang, args.filter_fn_name)
+if args.input_size is not None:
+    dataset['rel_ids'] = dataset['rel_ids'][:args.input_size]
 log.info("  " + dataset.summary())
 
 ### load indexes
@@ -121,6 +128,7 @@ indexes = load_from_pkl(indexes_pkl)
 indexes_size = load_from_pkl(indexes_size_pkl)
 indexes_cnts = load_from_pkl(indexes_cnts_pkl)
 log.info("  " + ", ".join([ "{}: {}".format(k, v) for k, v in indexes_size.items() ]))
+time_loaded = time.time()  # for time measurement
 
 ### load model
 log.info("load model ({})".format(args.model_dir))
@@ -138,7 +146,9 @@ test_size = (len(dataset['rel_ids']) + args.batch_size - 1) / args.batch_size * 
 x, _ = next(batch_generator(dataset, indexes, indexes_size, indexes_cnts, args.arg1_len, args.arg2_len, args.conn_len, args.punc_len, test_size, original_positives=1, random_positives=0, random_negatives=0))
 
 # make predictions
+time_prepared = time.time()  # for time measurement
 y_pred = model.predict(x, batch_size=args.batch_size)
+time_predicted = time.time()  # for time measurement
 
 # save predictions
 log.info("save predictions ({})".format(output_json))
@@ -292,3 +302,12 @@ for i, rel_id in enumerate(x['_rel_id']):  # for each relation/sample
 f_peek.close()
 
 log.info("finished ({})".format(args.output_dir))
+
+# display time measurement
+time_info = {
+    'loaded': time_loaded - time_start,
+    'prepared': time_prepared - time_loaded,
+    'predicted': time_predicted - time_prepared,
+}
+time_order = ['loaded', 'prepared', 'predicted']
+log.info("time: " + " - ".join([ "{}: {:.4f}".format(k, time_info[k]) for k in time_order ]))

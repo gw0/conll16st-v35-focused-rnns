@@ -1,5 +1,5 @@
 #!/bin/sh
-# Re-run the classification step of all FR system variants on CoNLL16st datasets.
+# Re-run the classification step of older FR system variants on CoNLL16st datasets.
 #
 # Author: gw0 [http://gw.tnode.com/] <gw.2019@ena.one>
 # License: All rights reserved
@@ -18,17 +18,17 @@ for MODEL_DIR in models-v35/*-$LANG-*; do OUTPUT_DIR="$MODEL_DIR/valid"; ./v35/c
 for MODEL_DIR in models-v35/*-$LANG-*; do OUTPUT_DIR="$MODEL_DIR/test"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$TEST_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
 for MODEL_DIR in models-v35/*-$LANG-*; do OUTPUT_DIR="$MODEL_DIR/blind"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$BLIND_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
 
-# [v35noaugm] output probabilities
-EXTRA_CONFIG='--original_positives=1 --random_positives=0 --random_negatives=0'
-for MODEL_DIR in models-v35noaugm/*-$LANG; do OUTPUT_DIR="$MODEL_DIR/valid"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$VALID_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
-for MODEL_DIR in models-v35noaugm/*-$LANG; do OUTPUT_DIR="$MODEL_DIR/test"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$TEST_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
-for MODEL_DIR in models-v35noaugm/*-$LANG; do OUTPUT_DIR="$MODEL_DIR/blind"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$BLIND_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
-
 # [v35word2vec] output probabilities
 EXTRA_CONFIG='--words_trainable=True --words_dim=300 --words2vec_txt=./data/word2vec-zh/zh-Gigaword-300.txt'
 for MODEL_DIR in models-v35word2vec/*-$LANG; do OUTPUT_DIR="$MODEL_DIR/valid"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$VALID_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
 for MODEL_DIR in models-v35word2vec/*-$LANG; do OUTPUT_DIR="$MODEL_DIR/test"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$TEST_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
 for MODEL_DIR in models-v35word2vec/*-$LANG; do OUTPUT_DIR="$MODEL_DIR/blind"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$BLIND_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
+
+# [v35noaugm] output probabilities
+EXTRA_CONFIG='--original_positives=1 --random_positives=0 --random_negatives=0'
+for MODEL_DIR in models-v35noaugm/*-$LANG; do OUTPUT_DIR="$MODEL_DIR/valid"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$VALID_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
+for MODEL_DIR in models-v35noaugm/*-$LANG; do OUTPUT_DIR="$MODEL_DIR/test"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$TEST_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
+for MODEL_DIR in models-v35noaugm/*-$LANG; do OUTPUT_DIR="$MODEL_DIR/blind"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$BLIND_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
 
 # [vsimple] output probabilities
 EXTRA_CONFIG="--rnn_dim=$((12*20))"
@@ -73,17 +73,17 @@ for MODEL_DIR in models-v35/*-$LANG-*; do OUTPUT_DIR="$MODEL_DIR/valid"; ./v35/c
 for MODEL_DIR in models-v35/*-$LANG-*; do OUTPUT_DIR="$MODEL_DIR/test"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$TEST_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
 for MODEL_DIR in models-v35/*-$LANG-*; do OUTPUT_DIR="$MODEL_DIR/blind"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$BLIND_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
 
-# [v35noaugm] output probabilities
-EXTRA_CONFIG='--original_positives=1 --random_positives=0 --random_negatives=0 --filter_dim=8 --rnn_num=8'
-for MODEL_DIR in models-v35noaugm/*-$LANG; do OUTPUT_DIR="$MODEL_DIR/valid"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$VALID_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
-for MODEL_DIR in models-v35noaugm/*-$LANG; do OUTPUT_DIR="$MODEL_DIR/test"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$TEST_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
-for MODEL_DIR in models-v35noaugm/*-$LANG; do OUTPUT_DIR="$MODEL_DIR/blind"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$BLIND_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
-
 # [v35word2vec] output probabilities
 EXTRA_CONFIG='--words_trainable=True --words_dim=300 --words2vec_bin=./data/word2vec-en/GoogleNews-vectors-negative300.bin.gz --filter_dim=8 --rnn_num=8'
 for MODEL_DIR in models-v35word2vec/*-$LANG; do OUTPUT_DIR="$MODEL_DIR/valid"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$VALID_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
 for MODEL_DIR in models-v35word2vec/*-$LANG; do OUTPUT_DIR="$MODEL_DIR/test"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$TEST_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
 for MODEL_DIR in models-v35word2vec/*-$LANG; do OUTPUT_DIR="$MODEL_DIR/blind"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$BLIND_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
+
+# [v35noaugm] output probabilities
+EXTRA_CONFIG='--original_positives=1 --random_positives=0 --random_negatives=0 --filter_dim=8 --rnn_num=8'
+for MODEL_DIR in models-v35noaugm/*-$LANG; do OUTPUT_DIR="$MODEL_DIR/valid"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$VALID_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
+for MODEL_DIR in models-v35noaugm/*-$LANG; do OUTPUT_DIR="$MODEL_DIR/test"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$TEST_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
+for MODEL_DIR in models-v35noaugm/*-$LANG; do OUTPUT_DIR="$MODEL_DIR/blind"; ./v35/classify.py "$MODEL_DIR" "$LANG" "$BLIND_DIR" "$OUTPUT_DIR" $LANG_CONFIG $EXTRA_CONFIG; done
 
 # [vsimple] output probabilities
 EXTRA_CONFIG="--rnn_dim=$((8*20))"

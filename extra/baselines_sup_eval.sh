@@ -15,20 +15,20 @@ LANG=zh LANG_CONFIG='--arg1_len=500 --arg2_len=500 --conn_len=10 --punc_len=2'
 # [majority] output
 MODEL_DIR="models-baselines/majority-$LANG"
 OUTPUT_DIR="$MODEL_DIR/valid"; mkdir -p "$OUTPUT_DIR"
-./baselines/majority_sup_parser.py "$LANG" "$VALID_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
+../baselines/majority_sup_parser.py "$LANG" "$VALID_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
 OUTPUT_DIR="$MODEL_DIR/test"; mkdir -p "$OUTPUT_DIR"
-./baselines/majority_sup_parser.py "$LANG" "$TEST_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
+../baselines/majority_sup_parser.py "$LANG" "$TEST_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
 OUTPUT_DIR="$MODEL_DIR/blind"; mkdir -p "$OUTPUT_DIR"
-./baselines/majority_sup_parser.py "$LANG" "$BLIND_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
+../baselines/majority_sup_parser.py "$LANG" "$BLIND_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
 
 # [random] output
 MODEL_DIR="models-baselines/random-$LANG"
 OUTPUT_DIR="$MODEL_DIR/valid"; mkdir -p "$OUTPUT_DIR"
-./baselines/random_sup_parser.py "$LANG" "$VALID_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
+../baselines/random_sup_parser.py "$LANG" "$VALID_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
 OUTPUT_DIR="$MODEL_DIR/test"; mkdir -p "$OUTPUT_DIR"
-./baselines/random_sup_parser.py "$LANG" "$TEST_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
+../baselines/random_sup_parser.py "$LANG" "$TEST_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
 OUTPUT_DIR="$MODEL_DIR/blind"; mkdir -p "$OUTPUT_DIR"
-./baselines/random_sup_parser.py "$LANG" "$BLIND_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
+../baselines/random_sup_parser.py "$LANG" "$BLIND_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
 
 # compute TIRA evaluation output
 for OUTPUT_DIR in models-baselines/*-$LANG/valid; do ./conll16st_evaluation/tira_sup_eval.py "$VALID_DIR" "$OUTPUT_DIR" "$OUTPUT_DIR" 2>&1 > $OUTPUT_DIR/tira_sup_eval.log; done
@@ -52,20 +52,20 @@ LANG=en LANG_CONFIG='--arg1_len=100 --arg2_len=100 --conn_len=10 --punc_len=0'
 # [majority] output
 MODEL_DIR="models-baselines/majority-$LANG"
 OUTPUT_DIR="$MODEL_DIR/valid"; mkdir -p "$OUTPUT_DIR"
-./baselines/majority_sup_parser.py "$LANG" "$VALID_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
+../baselines/majority_sup_parser.py "$LANG" "$VALID_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
 OUTPUT_DIR="$MODEL_DIR/test"; mkdir -p "$OUTPUT_DIR"
-./baselines/majority_sup_parser.py "$LANG" "$TEST_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
+../baselines/majority_sup_parser.py "$LANG" "$TEST_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
 OUTPUT_DIR="$MODEL_DIR/blind"; mkdir -p "$OUTPUT_DIR"
-./baselines/majority_sup_parser.py "$LANG" "$BLIND_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
+../baselines/majority_sup_parser.py "$LANG" "$BLIND_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
 
 # [random] output
 MODEL_DIR="models-baselines/random-$LANG"
 OUTPUT_DIR="$MODEL_DIR/valid"; mkdir -p "$OUTPUT_DIR"
-./baselines/random_sup_parser.py "$LANG" "$VALID_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
+../baselines/random_sup_parser.py "$LANG" "$VALID_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
 OUTPUT_DIR="$MODEL_DIR/test"; mkdir -p "$OUTPUT_DIR"
-./baselines/random_sup_parser.py "$LANG" "$TEST_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
+../baselines/random_sup_parser.py "$LANG" "$TEST_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
 OUTPUT_DIR="$MODEL_DIR/blind"; mkdir -p "$OUTPUT_DIR"
-./baselines/random_sup_parser.py "$LANG" "$BLIND_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
+../baselines/random_sup_parser.py "$LANG" "$BLIND_DIR" "$MODEL_DIR" "$OUTPUT_DIR"
 
 # compute TIRA evaluation output
 for OUTPUT_DIR in models-baselines/*-$LANG/valid; do ./conll16st_evaluation/tira_sup_eval.py "$VALID_DIR" "$OUTPUT_DIR" "$OUTPUT_DIR" 2>&1 > $OUTPUT_DIR/tira_sup_eval.log; done

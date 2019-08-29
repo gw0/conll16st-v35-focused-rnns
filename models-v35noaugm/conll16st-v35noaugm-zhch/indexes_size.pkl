@@ -1,8 +1,0 @@
-(dp1
-S'words2id'
-p2
-I2859
-sS'target2id'
-p3
-I12
-s.

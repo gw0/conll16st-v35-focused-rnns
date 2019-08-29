@@ -1,0 +1,66 @@
+Evaluation for all discourse relations
+Explicit connectives         : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 1 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 2 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg1 Arg2 extractor combined : Precision 1.0000 Recall 1.0000 F1 1.0000
+Sense classification--------------
+*Micro-Average                            precision 0.5566	recall 0.5566	F1 0.5566
+Comparison.Concession                     precision 0.1667	recall 0.0606	F1 0.0889
+Comparison.Contrast                       precision 0.7824	recall 0.6734	F1 0.7238
+Contingency.Cause.Reason                  precision 0.6186	recall 0.3946	F1 0.4818
+Contingency.Cause.Result                  precision 0.8444	recall 0.2815	F1 0.4222
+Contingency.Condition                     precision 0.9815	recall 0.8413	F1 0.9060
+EntRel                                    precision 0.3442	recall 0.4885	F1 0.4038
+Expansion.Alternative                     precision 0.6250	recall 1.0000	F1 0.7692
+Expansion.Alternative.Chosen alternative  precision 1.0000	recall 0.1111	F1 0.2000
+Expansion.Conjunction                     precision 0.5429	recall 0.7750	F1 0.6385
+Expansion.Instantiation                   precision 0.6739	recall 0.3407	F1 0.4526
+Expansion.Restatement                     precision 0.2198	recall 0.2576	F1 0.2372
+Temporal.Asynchronous.Precedence          precision 0.8085	recall 0.8444	F1 0.8261
+Temporal.Asynchronous.Succession          precision 0.9487	recall 0.5362	F1 0.6852
+Temporal.Synchrony                        precision 0.5752	recall 0.8025	F1 0.6701
+Overall parser performance --------------
+Precision 0.5566 Recall 0.5566 F1 0.5566
+Evaluation for explicit discourse relations only
+Explicit connectives         : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 1 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 2 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg1 Arg2 extractor combined : Precision 1.0000 Recall 1.0000 F1 1.0000
+Sense classification--------------
+*Micro-Average                            precision 0.8677	recall 0.8677	F1 0.8677
+Comparison.Concession                     precision 0.1667	recall 0.0741	F1 0.1026
+Comparison.Contrast                       precision 0.9000	recall 0.9368	F1 0.9180
+Contingency.Cause.Reason                  precision 0.9808	recall 0.7969	F1 0.8793
+Contingency.Cause.Result                  precision 1.0000	recall 0.8947	F1 0.9444
+Contingency.Condition                     precision 0.9815	recall 0.8413	F1 0.9060
+Expansion.Alternative                     precision 0.6250	recall 1.0000	F1 0.7692
+Expansion.Alternative.Chosen alternative  precision 1.0000	recall 0.6667	F1 0.8000
+Expansion.Conjunction                     precision 0.9087	recall 0.9676	F1 0.9373
+Expansion.Instantiation                   precision 1.0000	recall 1.0000	F1 1.0000
+Expansion.Restatement                     precision 0.7500	recall 0.4286	F1 0.5455
+Temporal.Asynchronous.Precedence          precision 0.8571	recall 1.0000	F1 0.9231
+Temporal.Asynchronous.Succession          precision 0.9737	recall 0.5781	F1 0.7255
+Temporal.Synchrony                        precision 0.5804	recall 0.8333	F1 0.6842
+Overall parser performance --------------
+Precision 0.8677 Recall 0.8677 F1 0.8677
+Evaluation for non-explicit discourse relations only (Implicit, EntRel, AltLex)
+Explicit connectives         : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 1 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 2 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg1 Arg2 extractor combined : Precision 1.0000 Recall 1.0000 F1 1.0000
+Sense classification--------------
+*Micro-Average                            precision 0.2734	recall 0.2734	F1 0.2734
+Comparison.Concession                     precision 1.0000	recall 0.0000	F1 0.0000
+Comparison.Contrast                       precision 0.2333	recall 0.1111	F1 0.1505
+Contingency.Cause.Reason                  precision 0.3333	recall 0.1818	F1 0.2353
+Contingency.Cause.Result                  precision 0.3636	recall 0.0412	F1 0.0741
+EntRel                                    precision 0.3442	recall 0.4885	F1 0.4038
+Expansion.Alternative.Chosen alternative  precision 1.0000	recall 0.0000	F1 0.0000
+Expansion.Conjunction                     precision 0.2305	recall 0.4641	F1 0.3080
+Expansion.Instantiation                   precision 0.4000	recall 0.1429	F1 0.2105
+Expansion.Restatement                     precision 0.2105	recall 0.2513	F1 0.2291
+Temporal.Asynchronous.Precedence          precision 0.4000	recall 0.2222	F1 0.2857
+Temporal.Asynchronous.Succession          precision 0.0000	recall 0.0000	F1 0.0000
+Temporal.Synchrony                        precision 0.0000	recall 0.0000	F1 0.0000
+Overall parser performance --------------
+Precision 0.2734 Recall 0.2734 F1 0.2734

@@ -1,0 +1,30 @@
+[2019-03-25 17:55] configuration (ex/conll16st-v35dimx2-zhch/test)
+[2019-03-25 17:55]   config 'arg1_len': 900
+[2019-03-25 17:55]   config 'arg2_len': 900
+[2019-03-25 17:55]   config 'backend': theano
+[2019-03-25 17:55]   config 'backend_theano': device=cpu
+[2019-03-25 17:55]   config 'batch_size': 64
+[2019-03-25 17:55]   config 'conn_len': 20
+[2019-03-25 17:55]   config 'dataset_dir': data/conll16st-zh-01-08-2016-test
+[2019-03-25 17:55]   config 'filter_fn_name': None
+[2019-03-25 17:55]   config 'input_size': None
+[2019-03-25 17:55]   config 'lang': zh
+[2019-03-25 17:55]   config 'mode': char
+[2019-03-25 17:55]   config 'model_dir': ex/conll16st-v35dimx2-zhch
+[2019-03-25 17:55]   config 'normalization_mode': sample_aspect
+[2019-03-25 17:55]   config 'output_dir': ex/conll16st-v35dimx2-zhch/test
+[2019-03-25 17:55]   config 'punc_len': 2
+[2019-03-25 17:55]   config 'rest': ['--words_dim=40', '--rnn_dim=40', '--final_dim=160']
+[2019-03-25 17:55]   config 'snapshot_size': 2048
+[2019-03-25 17:55] load dataset for prediction (data/conll16st-zh-01-08-2016-test)
+[2019-03-25 17:55]   lang: zh, rel_ids: 455
+[2019-03-25 17:55] load previous indexes (ex/conll16st-v35dimx2-zhch/indexes.pkl)
+[2019-03-25 17:55]   words2id: 2859, target2id: 12
+[2019-03-25 17:55] load model (ex/conll16st-v35dimx2-zhch)
+[2019-03-25 17:55] load previous weights (ex/conll16st-v35dimx2-zhch/weights_val_all_f1.hdf5)
+[2019-03-25 17:55] make predictions
+[2019-03-25 17:57] save predictions (ex/conll16st-v35dimx2-zhch/test/output.json)
+[2019-03-25 17:57] save predictions (ex/conll16st-v35dimx2-zhch/test/output_proba.json)
+[2019-03-25 17:57] peek into filtering weights (ex/conll16st-v35dimx2-zhch/test/peek.html)
+[2019-03-25 17:58] finished (ex/conll16st-v35dimx2-zhch/test)
+[2019-03-25 17:58] time: loaded: 0.0722 - prepared: 3.1977 - predicted: 103.1794

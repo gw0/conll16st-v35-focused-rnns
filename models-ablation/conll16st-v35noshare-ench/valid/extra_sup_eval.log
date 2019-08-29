@@ -1,0 +1,206 @@
+
+Evaluation for all discourse relations
+!! negative: gold sense not in alphabet (35725, Comparison)
+!! negative: gold sense not in alphabet (35803, Comparison)
+!! negative: gold sense not in alphabet (35827, Expansion)
+!! negative: gold sense not in alphabet (35952, Comparison)
+!! negative: gold sense not in alphabet (35955, Comparison)
+!! negative: gold sense not in alphabet (36059, Comparison)
+!! negative: gold sense not in alphabet (36063, Comparison)
+!! negative: gold sense not in alphabet (36066, Comparison)
+!! negative: gold sense not in alphabet (36110, Comparison)
+!! negative: gold sense not in alphabet (36122, Comparison)
+!! negative: gold sense not in alphabet (36148, Temporal)
+!! negative: gold sense not in alphabet (36163, Comparison)
+!! negative: gold sense not in alphabet (36187, Comparison)
+!! negative: gold sense not in alphabet (36207, Comparison)
+!! negative: gold sense not in alphabet (36244, Comparison)
+!! negative: gold sense not in alphabet (36262, Expansion)
+!! negative: gold sense not in alphabet (36394, Expansion)
+!! negative: gold sense not in alphabet (36395, Comparison)
+!! negative: gold sense not in alphabet (36408, Comparison)
+!! negative: gold sense not in alphabet (36435, Comparison)
+!! negative: gold sense not in alphabet (36449, Comparison)
+!! negative: gold sense not in alphabet (36467, Comparison)
+!! negative: gold sense not in alphabet (36509, Expansion)
+!! negative: gold sense not in alphabet (36847, Expansion)
+!! negative: gold sense not in alphabet (36868, Comparison)
+!! negative: gold sense not in alphabet (36910, Expansion)
+!! negative: gold sense not in alphabet (36953, Comparison)
+!! negative: gold sense not in alphabet (37004, Comparison)
+Argument extraction --------------
+Explicit connectives         : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 1 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 2 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg1 Arg2 extractor combined : Precision 1.0000 Recall 1.0000 F1 1.0000
+Sense classification --------------
+Comparison.Concession                     precision 0.3333	recall 0.1176	F1 0.1739	sensitivity 0.1176	specificity 0.9971	informedness 0.1148
+Comparison.Contrast                       precision 0.9298	recall 0.6411	F1 0.7589	sensitivity 0.6411	specificity 0.9897	informedness 0.6308
+Contingency.Cause.Reason                  precision 0.3600	recall 0.5431	F1 0.4330	sensitivity 0.5431	specificity 0.9133	informedness 0.4564
+Contingency.Cause.Result                  precision 0.7692	recall 0.2740	F1 0.4040	sensitivity 0.2740	specificity 0.9955	informedness 0.2695
+Contingency.Condition                     precision 0.9767	recall 0.9130	F1 0.9438	sensitivity 0.9130	specificity 0.9993	informedness 0.9123
+EntRel                                    precision 0.4279	recall 0.8977	F1 0.5796	sensitivity 0.8977	specificity 0.7837	informedness 0.6814
+Expansion.Alternative                     precision 0.8571	recall 1.0000	F1 0.9231	sensitivity 1.0000	specificity 0.9993	informedness 0.9993
+Expansion.Alternative.Chosen alternative  precision 1.0000	recall 0.6250	F1 0.7692	sensitivity 0.6250	specificity 1.0000	informedness 0.6250
+Expansion.Conjunction                     precision 0.7491	recall 0.7148	F1 0.7315	sensitivity 0.7148	specificity 0.9338	informedness 0.6486
+Expansion.Exception                       precision 1.0000	recall 1.0000	F1 1.0000	sensitivity 1.0000	specificity 1.0000	informedness 1.0000
+Expansion.Instantiation                   precision 1.0000	recall 0.1579	F1 0.2727	sensitivity 0.1579	specificity 1.0000	informedness 0.1579
+Expansion.Restatement                     precision 0.4054	recall 0.1389	F1 0.2069	sensitivity 0.1389	specificity 0.9831	informedness 0.1220
+Temporal.Asynchronous.Precedence          precision 0.9608	recall 0.6533	F1 0.7778	sensitivity 0.6533	specificity 0.9985	informedness 0.6518
+Temporal.Asynchronous.Succession          precision 1.0000	recall 0.6481	F1 0.7865	sensitivity 0.6481	specificity 1.0000	informedness 0.6481
+Temporal.Synchrony                        precision 0.7129	recall 0.9000	F1 0.7956	sensitivity 0.9000	specificity 0.9782	informedness 0.8782
+*Micro-Average                            precision 0.6307	recall 0.6307	F1 0.6307	sensitivity 0.6307	specificity 0.9754	informedness 0.6061
+Confusion matrix --------------
+row = predicted, column = truth
+                                         Comparison.Concession Comparison.Contrast Contingency.Cause.Reason Contingency.Cause.Result Contingency.Condition EntRel Expansion.Alternative Expansion.Alternative.Chosen alternative Expansion.Conjunction Expansion.Exception Expansion.Instantiation Expansion.Restatement Temporal.Asynchronous.Precedence Temporal.Asynchronous.Succession Temporal.Synchrony __NEGATIVE_CLASS__ __TOTAL__ __PRECISION__ 
+Comparison.Concession                    2*                    4                   0                        0                        0                     0      0                     0                                        0                     0                   0                       0                     0                                0                                0                  0                  6         0.3333        
+Comparison.Contrast                      9                     159*                0                        0                        0                     0      0                     1                                        2                     0                   0                       0                     0                                0                                0                  0                  171       0.9298        
+Contingency.Cause.Reason                 2                     14                  63*                      21                       0                     10     0                     1                                        16                    0                   15                      26                    4                                3                                0                  0                  175       0.3600        
+Contingency.Cause.Result                 0                     0                   4                        20*                      0                     0      0                     0                                        1                     0                   0                       0                     0                                0                                1                  0                  26        0.7692        
+Contingency.Condition                    1                     0                   0                        0                        42*                   0      0                     0                                        0                     0                   0                       0                     0                                0                                0                  0                  43        0.9767        
+EntRel                                   1                     46                  20                       22                       0                     193*   0                     0                                        63                    0                   25                      53                    19                               3                                6                  0                  451       0.4279        
+Expansion.Alternative                    0                     0                   0                        0                        0                     0      6*                    0                                        1                     0                   0                       0                     0                                0                                0                  0                  7         0.8571        
+Expansion.Alternative.Chosen alternative 0                     0                   0                        0                        0                     0      0                     5*                                       0                     0                   0                       0                     0                                0                                0                  0                  5         1.0000        
+Expansion.Conjunction                    1                     17                  14                       9                        0                     10     0                     1                                        218*                  0                   2                       14                    3                                1                                1                  0                  291       0.7491        
+Expansion.Exception                      0                     0                   0                        0                        0                     0      0                     0                                        0                     0*                  0                       0                     0                                0                                0                  0                  0         1.0000        
+Expansion.Instantiation                  0                     0                   0                        0                        0                     0      0                     0                                        0                     0                   9*                      0                     0                                0                                0                  0                  9         1.0000        
+Expansion.Restatement                    1                     7                   3                        1                        0                     2      0                     0                                        2                     0                   6                       15*                   0                                0                                0                  0                  37        0.4054        
+Temporal.Asynchronous.Precedence         0                     0                   1                        0                        1                     0      0                     0                                        0                     0                   0                       0                     49*                              0                                0                  0                  51        0.9608        
+Temporal.Asynchronous.Succession         0                     0                   0                        0                        0                     0      0                     0                                        0                     0                   0                       0                     0                                35*                              0                  0                  35        1.0000        
+Temporal.Synchrony                       0                     1                   11                       0                        3                     0      0                     0                                        2                     0                   0                       0                     0                                12                               72*                0                  101       0.7129        
+__NEGATIVE_CLASS__                       0                     0                   0                        0                        0                     0      0                     0                                        0                     0                   0                       0                     0                                0                                0                  0*                 0         1.0000        
+__TOTAL__                                17                    248                 116                      73                       46                    215    6                     8                                        305                   0                   57                      108                   75                               54                               80                 0                                          
+__RECALL__                               0.1176                0.6411              0.5431                   0.2740                   0.9130                0.8977 1.0000                0.6250                                   0.7148                1.0000              0.1579                  0.1389                0.6533                           0.6481                           0.9000             1.0000                                     
+
+Overall parser performance --------------
+Precision 0.6307 Recall 0.6307 F1 0.6307
+Sensitivity 0.6307 Specificity 0.9754 Informedness 0.6061
+Brier score 0.5237 (0.5652)
+
+Evaluation for explicit discourse relations only
+!! negative: gold sense not in alphabet (35725, Comparison)
+!! negative: gold sense not in alphabet (35803, Comparison)
+!! negative: gold sense not in alphabet (35952, Comparison)
+!! negative: gold sense not in alphabet (35955, Comparison)
+!! negative: gold sense not in alphabet (36059, Comparison)
+!! negative: gold sense not in alphabet (36063, Comparison)
+!! negative: gold sense not in alphabet (36066, Comparison)
+!! negative: gold sense not in alphabet (36110, Comparison)
+!! negative: gold sense not in alphabet (36122, Comparison)
+!! negative: gold sense not in alphabet (36148, Temporal)
+!! negative: gold sense not in alphabet (36163, Comparison)
+!! negative: gold sense not in alphabet (36187, Comparison)
+!! negative: gold sense not in alphabet (36207, Comparison)
+!! negative: gold sense not in alphabet (36244, Comparison)
+!! negative: gold sense not in alphabet (36395, Comparison)
+!! negative: gold sense not in alphabet (36408, Comparison)
+!! negative: gold sense not in alphabet (36435, Comparison)
+!! negative: gold sense not in alphabet (36449, Comparison)
+!! negative: gold sense not in alphabet (36467, Comparison)
+!! negative: gold sense not in alphabet (36953, Comparison)
+!! negative: gold sense not in alphabet (37004, Comparison)
+Argument extraction --------------
+Explicit connectives         : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 1 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 2 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg1 Arg2 extractor combined : Precision 1.0000 Recall 1.0000 F1 1.0000
+Sense classification --------------
+Comparison.Concession                     precision 0.3333	recall 0.1667	F1 0.2222	sensitivity 0.1667	specificity 0.9938	informedness 0.1605
+Comparison.Contrast                       precision 0.9298	recall 0.9695	F1 0.9493	sensitivity 0.9695	specificity 0.9758	informedness 0.9453
+Contingency.Cause.Reason                  precision 0.8621	recall 0.6579	F1 0.7463	sensitivity 0.6579	specificity 0.9936	informedness 0.6515
+Contingency.Cause.Result                  precision 1.0000	recall 0.8500	F1 0.9189	sensitivity 0.8500	specificity 1.0000	informedness 0.8500
+Contingency.Condition                     precision 0.9767	recall 0.9130	F1 0.9438	sensitivity 0.9130	specificity 0.9984	informedness 0.9114
+EntRel                                    precision 1.0000	recall 1.0000	F1 1.0000	sensitivity 1.0000	specificity 1.0000	informedness 1.0000
+Expansion.Alternative                     precision 0.8571	recall 1.0000	F1 0.9231	sensitivity 1.0000	specificity 0.9985	informedness 0.9985
+Expansion.Alternative.Chosen alternative  precision 1.0000	recall 0.8333	F1 0.9091	sensitivity 0.8333	specificity 1.0000	informedness 0.8333
+Expansion.Conjunction                     precision 0.9617	recall 0.9724	F1 0.9670	sensitivity 0.9724	specificity 0.9854	informedness 0.9577
+Expansion.Exception                       precision 1.0000	recall 1.0000	F1 1.0000	sensitivity 1.0000	specificity 1.0000	informedness 1.0000
+Expansion.Instantiation                   precision 1.0000	recall 1.0000	F1 1.0000	sensitivity 1.0000	specificity 1.0000	informedness 1.0000
+Expansion.Restatement                     precision 1.0000	recall 0.6667	F1 0.8000	sensitivity 0.6667	specificity 1.0000	informedness 0.6667
+Temporal.Asynchronous.Precedence          precision 0.9600	recall 1.0000	F1 0.9796	sensitivity 1.0000	specificity 0.9967	informedness 0.9967
+Temporal.Asynchronous.Succession          precision 1.0000	recall 0.6863	F1 0.8140	sensitivity 0.6863	specificity 1.0000	informedness 0.6863
+Temporal.Synchrony                        precision 0.7200	recall 1.0000	F1 0.8372	sensitivity 1.0000	specificity 0.9523	informedness 0.9523
+*Micro-Average                            precision 0.9105	recall 0.9105	F1 0.9105	sensitivity 0.9105	specificity 0.9940	informedness 0.9045
+Confusion matrix --------------
+row = predicted, column = truth
+                                         Comparison.Concession Comparison.Contrast Contingency.Cause.Reason Contingency.Cause.Result Contingency.Condition EntRel Expansion.Alternative Expansion.Alternative.Chosen alternative Expansion.Conjunction Expansion.Exception Expansion.Instantiation Expansion.Restatement Temporal.Asynchronous.Precedence Temporal.Asynchronous.Succession Temporal.Synchrony __NEGATIVE_CLASS__ __TOTAL__ __PRECISION__ 
+Comparison.Concession                    2*                    4                   0                        0                        0                     0      0                     0                                        0                     0                   0                       0                     0                                0                                0                  0                  6         0.3333        
+Comparison.Contrast                      9                     159*                0                        0                        0                     0      0                     1                                        2                     0                   0                       0                     0                                0                                0                  0                  171       0.9298        
+Contingency.Cause.Reason                 0                     0                   25*                      1                        0                     0      0                     0                                        0                     0                   0                       0                     0                                3                                0                  0                  29        0.8621        
+Contingency.Cause.Result                 0                     0                   0                        17*                      0                     0      0                     0                                        0                     0                   0                       0                     0                                0                                0                  0                  17        1.0000        
+Contingency.Condition                    1                     0                   0                        0                        42*                   0      0                     0                                        0                     0                   0                       0                     0                                0                                0                  0                  43        0.9767        
+EntRel                                   0                     0                   0                        0                        0                     0*     0                     0                                        0                     0                   0                       0                     0                                0                                0                  0                  0         1.0000        
+Expansion.Alternative                    0                     0                   0                        0                        0                     0      6*                    0                                        1                     0                   0                       0                     0                                0                                0                  0                  7         0.8571        
+Expansion.Alternative.Chosen alternative 0                     0                   0                        0                        0                     0      0                     5*                                       0                     0                   0                       0                     0                                0                                0                  0                  5         1.0000        
+Expansion.Conjunction                    0                     1                   1                        2                        0                     0      0                     0                                        176*                  0                   0                       2                     0                                1                                0                  0                  183       0.9617        
+Expansion.Exception                      0                     0                   0                        0                        0                     0      0                     0                                        0                     0*                  0                       0                     0                                0                                0                  0                  0         1.0000        
+Expansion.Instantiation                  0                     0                   0                        0                        0                     0      0                     0                                        0                     0                   9*                      0                     0                                0                                0                  0                  9         1.0000        
+Expansion.Restatement                    0                     0                   0                        0                        0                     0      0                     0                                        0                     0                   0                       4*                    0                                0                                0                  0                  4         1.0000        
+Temporal.Asynchronous.Precedence         0                     0                   1                        0                        1                     0      0                     0                                        0                     0                   0                       0                     48*                              0                                0                  0                  50        0.9600        
+Temporal.Asynchronous.Succession         0                     0                   0                        0                        0                     0      0                     0                                        0                     0                   0                       0                     0                                35*                              0                  0                  35        1.0000        
+Temporal.Synchrony                       0                     0                   11                       0                        3                     0      0                     0                                        2                     0                   0                       0                     0                                12                               72*                0                  100       0.7200        
+__NEGATIVE_CLASS__                       0                     0                   0                        0                        0                     0      0                     0                                        0                     0                   0                       0                     0                                0                                0                  0*                 0         1.0000        
+__TOTAL__                                12                    164                 38                       20                       46                    0      6                     6                                        181                   0                   9                       6                     48                               51                               72                 0                                          
+__RECALL__                               0.1667                0.9695              0.6579                   0.8500                   0.9130                1.0000 1.0000                0.8333                                   0.9724                1.0000              1.0000                  0.6667                1.0000                           0.6863                           1.0000             1.0000                                     
+
+Overall parser performance --------------
+Precision 0.9105 Recall 0.9105 F1 0.9105
+Sensitivity 0.9105 Specificity 0.9940 Informedness 0.9045
+Brier score 0.2183 (0.2708)
+
+Evaluation for non-explicit discourse relations only (Implicit, EntRel, AltLex)
+!! negative: gold sense not in alphabet (35827, Expansion)
+!! negative: gold sense not in alphabet (36262, Expansion)
+!! negative: gold sense not in alphabet (36394, Expansion)
+!! negative: gold sense not in alphabet (36509, Expansion)
+!! negative: gold sense not in alphabet (36847, Expansion)
+!! negative: gold sense not in alphabet (36868, Comparison)
+!! negative: gold sense not in alphabet (36910, Expansion)
+Argument extraction --------------
+Explicit connectives         : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 1 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 2 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg1 Arg2 extractor combined : Precision 1.0000 Recall 1.0000 F1 1.0000
+Sense classification --------------
+Comparison.Concession                     precision 1.0000	recall 0.0000	F1 0.0000	sensitivity 0.0000	specificity 1.0000	informedness 0.0000
+Comparison.Contrast                       precision 1.0000	recall 0.0000	F1 0.0000	sensitivity 0.0000	specificity 1.0000	informedness 0.0000
+Contingency.Cause.Reason                  precision 0.2603	recall 0.4872	F1 0.3393	sensitivity 0.4872	specificity 0.8390	informedness 0.3262
+Contingency.Cause.Result                  precision 0.3333	recall 0.0566	F1 0.0968	sensitivity 0.0566	specificity 0.9914	informedness 0.0480
+Contingency.Condition                     precision 1.0000	recall 1.0000	F1 1.0000	sensitivity 1.0000	specificity 1.0000	informedness 1.0000
+EntRel                                    precision 0.4279	recall 0.8977	F1 0.5796	sensitivity 0.8977	specificity 0.5169	informedness 0.4145
+Expansion.Alternative                     precision 1.0000	recall 1.0000	F1 1.0000	sensitivity 1.0000	specificity 1.0000	informedness 1.0000
+Expansion.Alternative.Chosen alternative  precision 1.0000	recall 0.0000	F1 0.0000	sensitivity 0.0000	specificity 1.0000	informedness 0.0000
+Expansion.Conjunction                     precision 0.3889	recall 0.3387	F1 0.3621	sensitivity 0.3387	specificity 0.8944	informedness 0.2331
+Expansion.Exception                       precision 1.0000	recall 1.0000	F1 1.0000	sensitivity 1.0000	specificity 1.0000	informedness 1.0000
+Expansion.Instantiation                   precision 1.0000	recall 0.0000	F1 0.0000	sensitivity 0.0000	specificity 1.0000	informedness 0.0000
+Expansion.Restatement                     precision 0.3333	recall 0.1078	F1 0.1630	sensitivity 0.1078	specificity 0.9660	informedness 0.0738
+Temporal.Asynchronous.Precedence          precision 1.0000	recall 0.0370	F1 0.0714	sensitivity 0.0370	specificity 1.0000	informedness 0.0370
+Temporal.Asynchronous.Succession          precision 1.0000	recall 0.0000	F1 0.0000	sensitivity 0.0000	specificity 1.0000	informedness 0.0000
+Temporal.Synchrony                        precision 0.0000	recall 0.0000	F1 0.0000	sensitivity 0.0000	specificity 0.9987	informedness -0.0013
+*Micro-Average                            precision 0.3845	recall 0.3845	F1 0.3845	sensitivity 0.3845	specificity 0.9590	informedness 0.3435
+Confusion matrix --------------
+row = predicted, column = truth
+                                         Comparison.Concession Comparison.Contrast Contingency.Cause.Reason Contingency.Cause.Result Contingency.Condition EntRel Expansion.Alternative Expansion.Alternative.Chosen alternative Expansion.Conjunction Expansion.Exception Expansion.Instantiation Expansion.Restatement Temporal.Asynchronous.Precedence Temporal.Asynchronous.Succession Temporal.Synchrony __NEGATIVE_CLASS__ __TOTAL__ __PRECISION__ 
+Comparison.Concession                    0*                    0                   0                        0                        0                     0      0                     0                                        0                     0                   0                       0                     0                                0                                0                  0                  0         1.0000        
+Comparison.Contrast                      0                     0*                  0                        0                        0                     0      0                     0                                        0                     0                   0                       0                     0                                0                                0                  0                  0         1.0000        
+Contingency.Cause.Reason                 2                     14                  38*                      20                       0                     10     0                     1                                        16                    0                   15                      26                    4                                0                                0                  0                  146       0.2603        
+Contingency.Cause.Result                 0                     0                   4                        3*                       0                     0      0                     0                                        1                     0                   0                       0                     0                                0                                1                  0                  9         0.3333        
+Contingency.Condition                    0                     0                   0                        0                        0*                    0      0                     0                                        0                     0                   0                       0                     0                                0                                0                  0                  0         1.0000        
+EntRel                                   1                     46                  20                       22                       0                     193*   0                     0                                        63                    0                   25                      53                    19                               3                                6                  0                  451       0.4279        
+Expansion.Alternative                    0                     0                   0                        0                        0                     0      0*                    0                                        0                     0                   0                       0                     0                                0                                0                  0                  0         1.0000        
+Expansion.Alternative.Chosen alternative 0                     0                   0                        0                        0                     0      0                     0*                                       0                     0                   0                       0                     0                                0                                0                  0                  0         1.0000        
+Expansion.Conjunction                    1                     16                  13                       7                        0                     10     0                     1                                        42*                   0                   2                       12                    3                                0                                1                  0                  108       0.3889        
+Expansion.Exception                      0                     0                   0                        0                        0                     0      0                     0                                        0                     0*                  0                       0                     0                                0                                0                  0                  0         1.0000        
+Expansion.Instantiation                  0                     0                   0                        0                        0                     0      0                     0                                        0                     0                   0*                      0                     0                                0                                0                  0                  0         1.0000        
+Expansion.Restatement                    1                     7                   3                        1                        0                     2      0                     0                                        2                     0                   6                       11*                   0                                0                                0                  0                  33        0.3333        
+Temporal.Asynchronous.Precedence         0                     0                   0                        0                        0                     0      0                     0                                        0                     0                   0                       0                     1*                               0                                0                  0                  1         1.0000        
+Temporal.Asynchronous.Succession         0                     0                   0                        0                        0                     0      0                     0                                        0                     0                   0                       0                     0                                0*                               0                  0                  0         1.0000        
+Temporal.Synchrony                       0                     1                   0                        0                        0                     0      0                     0                                        0                     0                   0                       0                     0                                0                                0*                 0                  1         0.0000        
+__NEGATIVE_CLASS__                       0                     0                   0                        0                        0                     0      0                     0                                        0                     0                   0                       0                     0                                0                                0                  0*                 0         1.0000        
+__TOTAL__                                5                     84                  78                       53                       0                     215    0                     2                                        124                   0                   48                      102                   27                               3                                8                  0                                          
+__RECALL__                               0.0000                0.0000              0.4872                   0.0566                   1.0000                0.8977 1.0000                0.0000                                   0.3387                1.0000              0.0000                  0.1078                0.0370                           0.0000                           0.0000             1.0000                                     
+
+Overall parser performance --------------
+Precision 0.3845 Recall 0.3845 F1 0.3845
+Sensitivity 0.3845 Specificity 0.9590 Informedness 0.3435
+Brier score 0.7983 (0.8300)

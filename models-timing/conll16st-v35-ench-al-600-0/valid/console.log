@@ -1,0 +1,30 @@
+[2019-03-30 01:44] configuration (ex/conll16st-v35-ench-al-600-0/valid)
+[2019-03-30 01:44]   config 'arg1_len': 600
+[2019-03-30 01:44]   config 'arg2_len': 600
+[2019-03-30 01:44]   config 'backend': theano
+[2019-03-30 01:44]   config 'backend_theano': device=gpu,floatX=float32,nvcc.fastmath=True,lib.cnmem=0.8
+[2019-03-30 01:44]   config 'batch_size': 64
+[2019-03-30 01:44]   config 'conn_len': 20
+[2019-03-30 01:44]   config 'dataset_dir': data/conll16st-en-03-29-16-dev
+[2019-03-30 01:44]   config 'filter_fn_name': None
+[2019-03-30 01:44]   config 'input_size': None
+[2019-03-30 01:44]   config 'lang': en
+[2019-03-30 01:44]   config 'mode': char
+[2019-03-30 01:44]   config 'model_dir': ex/conll16st-v35-ench-al-600-0
+[2019-03-30 01:44]   config 'normalization_mode': sample_aspect
+[2019-03-30 01:44]   config 'output_dir': ex/conll16st-v35-ench-al-600-0/valid
+[2019-03-30 01:44]   config 'punc_len': 0
+[2019-03-30 01:44]   config 'rest': []
+[2019-03-30 01:44]   config 'snapshot_size': 2048
+[2019-03-30 01:44] load dataset for prediction (data/conll16st-en-03-29-16-dev)
+[2019-03-30 01:44]   lang: en, rel_ids: 1436
+[2019-03-30 01:44] load previous indexes (ex/conll16st-v35-ench-al-600-0/indexes.pkl)
+[2019-03-30 01:44]   words2id: 87, target2id: 23
+[2019-03-30 01:44] load model (ex/conll16st-v35-ench-al-600-0)
+[2019-03-30 01:44] load previous weights (ex/conll16st-v35-ench-al-600-0/weights_val_all_f1.hdf5)
+[2019-03-30 01:44] make predictions
+[2019-03-30 01:45] save predictions (ex/conll16st-v35-ench-al-600-0/valid/output.json)
+[2019-03-30 01:45] save predictions (ex/conll16st-v35-ench-al-600-0/valid/output_proba.json)
+[2019-03-30 01:45] peek into filtering weights (ex/conll16st-v35-ench-al-600-0/valid/peek.html)
+[2019-03-30 01:50] finished (ex/conll16st-v35-ench-al-600-0/valid)
+[2019-03-30 01:50] time: loaded: 0.2618 - prepared: 2.2310 - predicted: 71.2599

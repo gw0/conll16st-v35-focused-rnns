@@ -1,0 +1,1384 @@
+class_name: Model
+config:
+  input_layers:
+  - [arg1_ids, 0, 0]
+  - [arg2_ids, 0, 0]
+  - [conn_ids, 0, 0]
+  layers:
+  - class_name: InputLayer
+    config:
+      batch_input_shape: !!python/tuple [null, 100]
+      input_dtype: int32
+      name: arg1_ids
+      sparse: false
+    inbound_nodes: []
+    name: arg1_ids
+  - class_name: InputLayer
+    config:
+      batch_input_shape: !!python/tuple [null, 100]
+      input_dtype: int32
+      name: arg2_ids
+      sparse: false
+    inbound_nodes: []
+    name: arg2_ids
+  - class_name: InputLayer
+    config:
+      batch_input_shape: !!python/tuple [null, 10]
+      input_dtype: int32
+      name: conn_ids
+      sparse: false
+    inbound_nodes: []
+    name: conn_ids
+  - class_name: Embedding
+    config:
+      W_constraint: null
+      W_regularizer: null
+      activity_regularizer: null
+      batch_input_shape: !!python/tuple [null, null]
+      dropout: 0.3
+      init: uniform
+      input_dim: 43918
+      input_dtype: int32
+      input_length: null
+      mask_zero: true
+      name: embedding_1
+      output_dim: 20
+      trainable: true
+    inbound_nodes:
+    - - [arg1_ids, 0, 0]
+    - - [arg2_ids, 0, 0]
+    - - [conn_ids, 0, 0]
+    name: embedding_1
+  - class_name: ShareableLSTM
+    config: {U_regularizer: null, W_regularizer: null, activation: sigmoid, b_regularizer: null,
+      consume_less: cpu, dropout_U: 0.0, dropout_W: 0.0, forget_bias_init: one, go_backwards: false,
+      init: glorot_uniform, inner_activation: hard_sigmoid, inner_init: orthogonal,
+      input_dim: 20, input_length: null, name: shareablelstm_1, output_dim: 12, return_sequences: true,
+      stateful: false, trainable: true, unroll: false}
+    inbound_nodes:
+    - - [embedding_1, 0, 0]
+    - - [embedding_1, 1, 0]
+    - - [embedding_1, 2, 0]
+    name: shareablelstm_1
+  - class_name: ShareableLSTM
+    config: {U_regularizer: null, W_regularizer: null, activation: sigmoid, b_regularizer: null,
+      consume_less: cpu, dropout_U: 0.0, dropout_W: 0.0, forget_bias_init: one, go_backwards: true,
+      init: glorot_uniform, inner_activation: hard_sigmoid, inner_init: orthogonal,
+      input_dim: 20, input_length: null, name: shareablelstm_2, output_dim: 12, return_sequences: true,
+      stateful: false, trainable: true, unroll: false}
+    inbound_nodes:
+    - - [embedding_1, 0, 0]
+    - - [embedding_1, 1, 0]
+    - - [embedding_1, 2, 0]
+    name: shareablelstm_2
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: ave
+      mode_type: raw
+      name: merge_1
+      output_mask: null
+      output_mask_type: raw
+      output_shape: null
+      output_shape_type: raw
+    inbound_nodes:
+    - - [shareablelstm_1, 0, 0]
+      - [shareablelstm_2, 0, 0]
+    name: merge_1
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: ave
+      mode_type: raw
+      name: merge_15
+      output_mask: null
+      output_mask_type: raw
+      output_shape: null
+      output_shape_type: raw
+    inbound_nodes:
+    - - [shareablelstm_1, 1, 0]
+      - [shareablelstm_2, 1, 0]
+    name: merge_15
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: ave
+      mode_type: raw
+      name: merge_29
+      output_mask: null
+      output_mask_type: raw
+      output_shape: null
+      output_shape_type: raw
+    inbound_nodes:
+    - - [shareablelstm_1, 2, 0]
+      - [shareablelstm_2, 2, 0]
+    name: merge_29
+  - class_name: Activation
+    config: {activation: linear, name: arg1_filters, trainable: true}
+    inbound_nodes:
+    - - [merge_1, 0, 0]
+    name: arg1_filters
+  - class_name: Activation
+    config: {activation: linear, name: arg2_filters, trainable: true}
+    inbound_nodes:
+    - - [merge_15, 0, 0]
+    name: arg2_filters
+  - class_name: Activation
+    config: {activation: linear, name: conn_filters, trainable: true}
+    inbound_nodes:
+    - - [merge_29, 0, 0]
+    name: conn_filters
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [0]
+      - null
+      mode_type: lambda
+      name: merge_2
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 0, 0]
+      - [arg1_filters, 0, 0]
+    name: merge_2
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [1]
+      - null
+      mode_type: lambda
+      name: merge_3
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 0, 0]
+      - [arg1_filters, 0, 0]
+    name: merge_3
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [2]
+      - null
+      mode_type: lambda
+      name: merge_4
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 0, 0]
+      - [arg1_filters, 0, 0]
+    name: merge_4
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [3]
+      - null
+      mode_type: lambda
+      name: merge_5
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 0, 0]
+      - [arg1_filters, 0, 0]
+    name: merge_5
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [4]
+      - null
+      mode_type: lambda
+      name: merge_6
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 0, 0]
+      - [arg1_filters, 0, 0]
+    name: merge_6
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [5]
+      - null
+      mode_type: lambda
+      name: merge_7
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 0, 0]
+      - [arg1_filters, 0, 0]
+    name: merge_7
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [6]
+      - null
+      mode_type: lambda
+      name: merge_8
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 0, 0]
+      - [arg1_filters, 0, 0]
+    name: merge_8
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [7]
+      - null
+      mode_type: lambda
+      name: merge_9
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 0, 0]
+      - [arg1_filters, 0, 0]
+    name: merge_9
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [8]
+      - null
+      mode_type: lambda
+      name: merge_10
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 0, 0]
+      - [arg1_filters, 0, 0]
+    name: merge_10
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [9]
+      - null
+      mode_type: lambda
+      name: merge_11
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 0, 0]
+      - [arg1_filters, 0, 0]
+    name: merge_11
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [10]
+      - null
+      mode_type: lambda
+      name: merge_12
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 0, 0]
+      - [arg1_filters, 0, 0]
+    name: merge_12
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [11]
+      - null
+      mode_type: lambda
+      name: merge_13
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 0, 0]
+      - [arg1_filters, 0, 0]
+    name: merge_13
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [0]
+      - null
+      mode_type: lambda
+      name: merge_16
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 1, 0]
+      - [arg2_filters, 0, 0]
+    name: merge_16
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [1]
+      - null
+      mode_type: lambda
+      name: merge_17
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 1, 0]
+      - [arg2_filters, 0, 0]
+    name: merge_17
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [2]
+      - null
+      mode_type: lambda
+      name: merge_18
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 1, 0]
+      - [arg2_filters, 0, 0]
+    name: merge_18
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [3]
+      - null
+      mode_type: lambda
+      name: merge_19
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 1, 0]
+      - [arg2_filters, 0, 0]
+    name: merge_19
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [4]
+      - null
+      mode_type: lambda
+      name: merge_20
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 1, 0]
+      - [arg2_filters, 0, 0]
+    name: merge_20
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [5]
+      - null
+      mode_type: lambda
+      name: merge_21
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 1, 0]
+      - [arg2_filters, 0, 0]
+    name: merge_21
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [6]
+      - null
+      mode_type: lambda
+      name: merge_22
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 1, 0]
+      - [arg2_filters, 0, 0]
+    name: merge_22
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [7]
+      - null
+      mode_type: lambda
+      name: merge_23
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 1, 0]
+      - [arg2_filters, 0, 0]
+    name: merge_23
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [8]
+      - null
+      mode_type: lambda
+      name: merge_24
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 1, 0]
+      - [arg2_filters, 0, 0]
+    name: merge_24
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [9]
+      - null
+      mode_type: lambda
+      name: merge_25
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 1, 0]
+      - [arg2_filters, 0, 0]
+    name: merge_25
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [10]
+      - null
+      mode_type: lambda
+      name: merge_26
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 1, 0]
+      - [arg2_filters, 0, 0]
+    name: merge_26
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [11]
+      - null
+      mode_type: lambda
+      name: merge_27
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 1, 0]
+      - [arg2_filters, 0, 0]
+    name: merge_27
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [0]
+      - null
+      mode_type: lambda
+      name: merge_30
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 2, 0]
+      - [conn_filters, 0, 0]
+    name: merge_30
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [1]
+      - null
+      mode_type: lambda
+      name: merge_31
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 2, 0]
+      - [conn_filters, 0, 0]
+    name: merge_31
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [2]
+      - null
+      mode_type: lambda
+      name: merge_32
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 2, 0]
+      - [conn_filters, 0, 0]
+    name: merge_32
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [3]
+      - null
+      mode_type: lambda
+      name: merge_33
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 2, 0]
+      - [conn_filters, 0, 0]
+    name: merge_33
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [4]
+      - null
+      mode_type: lambda
+      name: merge_34
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 2, 0]
+      - [conn_filters, 0, 0]
+    name: merge_34
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [5]
+      - null
+      mode_type: lambda
+      name: merge_35
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 2, 0]
+      - [conn_filters, 0, 0]
+    name: merge_35
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [6]
+      - null
+      mode_type: lambda
+      name: merge_36
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 2, 0]
+      - [conn_filters, 0, 0]
+    name: merge_36
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [7]
+      - null
+      mode_type: lambda
+      name: merge_37
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 2, 0]
+      - [conn_filters, 0, 0]
+    name: merge_37
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [8]
+      - null
+      mode_type: lambda
+      name: merge_38
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 2, 0]
+      - [conn_filters, 0, 0]
+    name: merge_38
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [9]
+      - null
+      mode_type: lambda
+      name: merge_39
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 2, 0]
+      - [conn_filters, 0, 0]
+    name: merge_39
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [10]
+      - null
+      mode_type: lambda
+      name: merge_40
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 2, 0]
+      - [conn_filters, 0, 0]
+    name: merge_40
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: !!python/tuple
+      - "c\x02\0\0\0\x04\0\0\0\x06\0\0\0S\0\0\0s<\0\0\0|\0\0\\\x02\0}\x02\0}\x03\0\
+        |\x02\0t\0\0j\x01\0|\x03\0d\0\0d\0\0\N\x02\0d\0\0d\0\0\N\x02\0|\x01\0f\x03\
+        \0\x19d\x01\0d\x02\0\x83\x01\x01\x14S(\x03\0\0\0Nt\x03\0\0\0dimi\x02\0\0\0\
+        (\x02\0\0\0t\x01\0\0\0Kt\v\0\0\0expand_dims(\x04\0\0\0t\x02\0\0\0.0t\x01\0\
+        \0\0it\x01\0\0\0xt\x01\0\0\0f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\v\
+        \0\0\0mul_filters\xB3\0\0\0s\x04\0\0\0\x03\0\t\x01"
+      - !!python/tuple [11]
+      - null
+      mode_type: lambda
+      name: merge_41
+      output_mask: null
+      output_mask_type: raw
+      output_shape: !!python/tuple ["c\x01\0\0\0\x03\0\0\0\x02\0\0\0S\0\0\0s\x10\0\
+          \0\0|\0\0\\\x02\0}\x01\0}\x02\0|\x01\0S(\x01\0\0\0N(\0\0\0\0(\x03\0\0\0\
+          t\x02\0\0\0.0t\x01\0\0\0st\x02\0\0\0_f(\0\0\0\0(\0\0\0\0s\x11\0\0\0/srv/v35/model.pyt\x11\
+          \0\0\0mul_filters_shape\xB5\0\0\0s\x04\0\0\0\x03\0\t\x01", null, null]
+      output_shape_type: lambda
+    inbound_nodes:
+    - - [embedding_1, 2, 0]
+      - [conn_filters, 0, 0]
+    name: merge_41
+  - class_name: ShareableLSTM
+    config: {U_regularizer: null, W_regularizer: null, activation: tanh, b_regularizer: null,
+      consume_less: cpu, dropout_U: 0.0, dropout_W: 0.0, forget_bias_init: one, go_backwards: false,
+      init: glorot_uniform, inner_activation: hard_sigmoid, inner_init: orthogonal,
+      input_dim: 20, input_length: null, name: shareablelstm_3, output_dim: 20, return_sequences: false,
+      stateful: false, trainable: true, unroll: false}
+    inbound_nodes:
+    - - [merge_2, 0, 0]
+    - - [merge_16, 0, 0]
+    - - [merge_30, 0, 0]
+    name: shareablelstm_3
+  - class_name: ShareableLSTM
+    config: {U_regularizer: null, W_regularizer: null, activation: tanh, b_regularizer: null,
+      consume_less: cpu, dropout_U: 0.0, dropout_W: 0.0, forget_bias_init: one, go_backwards: false,
+      init: glorot_uniform, inner_activation: hard_sigmoid, inner_init: orthogonal,
+      input_dim: 20, input_length: null, name: shareablelstm_5, output_dim: 20, return_sequences: false,
+      stateful: false, trainable: true, unroll: false}
+    inbound_nodes:
+    - - [merge_3, 0, 0]
+    - - [merge_17, 0, 0]
+    - - [merge_31, 0, 0]
+    name: shareablelstm_5
+  - class_name: ShareableLSTM
+    config: {U_regularizer: null, W_regularizer: null, activation: tanh, b_regularizer: null,
+      consume_less: cpu, dropout_U: 0.0, dropout_W: 0.0, forget_bias_init: one, go_backwards: false,
+      init: glorot_uniform, inner_activation: hard_sigmoid, inner_init: orthogonal,
+      input_dim: 20, input_length: null, name: shareablelstm_7, output_dim: 20, return_sequences: false,
+      stateful: false, trainable: true, unroll: false}
+    inbound_nodes:
+    - - [merge_4, 0, 0]
+    - - [merge_18, 0, 0]
+    - - [merge_32, 0, 0]
+    name: shareablelstm_7
+  - class_name: ShareableLSTM
+    config: {U_regularizer: null, W_regularizer: null, activation: tanh, b_regularizer: null,
+      consume_less: cpu, dropout_U: 0.0, dropout_W: 0.0, forget_bias_init: one, go_backwards: false,
+      init: glorot_uniform, inner_activation: hard_sigmoid, inner_init: orthogonal,
+      input_dim: 20, input_length: null, name: shareablelstm_9, output_dim: 20, return_sequences: false,
+      stateful: false, trainable: true, unroll: false}
+    inbound_nodes:
+    - - [merge_5, 0, 0]
+    - - [merge_19, 0, 0]
+    - - [merge_33, 0, 0]
+    name: shareablelstm_9
+  - class_name: ShareableLSTM
+    config: {U_regularizer: null, W_regularizer: null, activation: tanh, b_regularizer: null,
+      consume_less: cpu, dropout_U: 0.0, dropout_W: 0.0, forget_bias_init: one, go_backwards: false,
+      init: glorot_uniform, inner_activation: hard_sigmoid, inner_init: orthogonal,
+      input_dim: 20, input_length: null, name: shareablelstm_11, output_dim: 20, return_sequences: false,
+      stateful: false, trainable: true, unroll: false}
+    inbound_nodes:
+    - - [merge_6, 0, 0]
+    - - [merge_20, 0, 0]
+    - - [merge_34, 0, 0]
+    name: shareablelstm_11
+  - class_name: ShareableLSTM
+    config: {U_regularizer: null, W_regularizer: null, activation: tanh, b_regularizer: null,
+      consume_less: cpu, dropout_U: 0.0, dropout_W: 0.0, forget_bias_init: one, go_backwards: false,
+      init: glorot_uniform, inner_activation: hard_sigmoid, inner_init: orthogonal,
+      input_dim: 20, input_length: null, name: shareablelstm_13, output_dim: 20, return_sequences: false,
+      stateful: false, trainable: true, unroll: false}
+    inbound_nodes:
+    - - [merge_7, 0, 0]
+    - - [merge_21, 0, 0]
+    - - [merge_35, 0, 0]
+    name: shareablelstm_13
+  - class_name: ShareableLSTM
+    config: {U_regularizer: null, W_regularizer: null, activation: tanh, b_regularizer: null,
+      consume_less: cpu, dropout_U: 0.0, dropout_W: 0.0, forget_bias_init: one, go_backwards: false,
+      init: glorot_uniform, inner_activation: hard_sigmoid, inner_init: orthogonal,
+      input_dim: 20, input_length: null, name: shareablelstm_15, output_dim: 20, return_sequences: false,
+      stateful: false, trainable: true, unroll: false}
+    inbound_nodes:
+    - - [merge_8, 0, 0]
+    - - [merge_22, 0, 0]
+    - - [merge_36, 0, 0]
+    name: shareablelstm_15
+  - class_name: ShareableLSTM
+    config: {U_regularizer: null, W_regularizer: null, activation: tanh, b_regularizer: null,
+      consume_less: cpu, dropout_U: 0.0, dropout_W: 0.0, forget_bias_init: one, go_backwards: false,
+      init: glorot_uniform, inner_activation: hard_sigmoid, inner_init: orthogonal,
+      input_dim: 20, input_length: null, name: shareablelstm_17, output_dim: 20, return_sequences: false,
+      stateful: false, trainable: true, unroll: false}
+    inbound_nodes:
+    - - [merge_9, 0, 0]
+    - - [merge_23, 0, 0]
+    - - [merge_37, 0, 0]
+    name: shareablelstm_17
+  - class_name: ShareableLSTM
+    config: {U_regularizer: null, W_regularizer: null, activation: tanh, b_regularizer: null,
+      consume_less: cpu, dropout_U: 0.0, dropout_W: 0.0, forget_bias_init: one, go_backwards: false,
+      init: glorot_uniform, inner_activation: hard_sigmoid, inner_init: orthogonal,
+      input_dim: 20, input_length: null, name: shareablelstm_19, output_dim: 20, return_sequences: false,
+      stateful: false, trainable: true, unroll: false}
+    inbound_nodes:
+    - - [merge_10, 0, 0]
+    - - [merge_24, 0, 0]
+    - - [merge_38, 0, 0]
+    name: shareablelstm_19
+  - class_name: ShareableLSTM
+    config: {U_regularizer: null, W_regularizer: null, activation: tanh, b_regularizer: null,
+      consume_less: cpu, dropout_U: 0.0, dropout_W: 0.0, forget_bias_init: one, go_backwards: false,
+      init: glorot_uniform, inner_activation: hard_sigmoid, inner_init: orthogonal,
+      input_dim: 20, input_length: null, name: shareablelstm_21, output_dim: 20, return_sequences: false,
+      stateful: false, trainable: true, unroll: false}
+    inbound_nodes:
+    - - [merge_11, 0, 0]
+    - - [merge_25, 0, 0]
+    - - [merge_39, 0, 0]
+    name: shareablelstm_21
+  - class_name: ShareableLSTM
+    config: {U_regularizer: null, W_regularizer: null, activation: tanh, b_regularizer: null,
+      consume_less: cpu, dropout_U: 0.0, dropout_W: 0.0, forget_bias_init: one, go_backwards: false,
+      init: glorot_uniform, inner_activation: hard_sigmoid, inner_init: orthogonal,
+      input_dim: 20, input_length: null, name: shareablelstm_23, output_dim: 20, return_sequences: false,
+      stateful: false, trainable: true, unroll: false}
+    inbound_nodes:
+    - - [merge_12, 0, 0]
+    - - [merge_26, 0, 0]
+    - - [merge_40, 0, 0]
+    name: shareablelstm_23
+  - class_name: ShareableLSTM
+    config: {U_regularizer: null, W_regularizer: null, activation: tanh, b_regularizer: null,
+      consume_less: cpu, dropout_U: 0.0, dropout_W: 0.0, forget_bias_init: one, go_backwards: false,
+      init: glorot_uniform, inner_activation: hard_sigmoid, inner_init: orthogonal,
+      input_dim: 20, input_length: null, name: shareablelstm_25, output_dim: 20, return_sequences: false,
+      stateful: false, trainable: true, unroll: false}
+    inbound_nodes:
+    - - [merge_13, 0, 0]
+    - - [merge_27, 0, 0]
+    - - [merge_41, 0, 0]
+    name: shareablelstm_25
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: concat
+      mode_type: raw
+      name: merge_14
+      output_mask: null
+      output_mask_type: raw
+      output_shape: null
+      output_shape_type: raw
+    inbound_nodes:
+    - - [shareablelstm_3, 0, 0]
+      - [shareablelstm_5, 0, 0]
+      - [shareablelstm_7, 0, 0]
+      - [shareablelstm_9, 0, 0]
+      - [shareablelstm_11, 0, 0]
+      - [shareablelstm_13, 0, 0]
+      - [shareablelstm_15, 0, 0]
+      - [shareablelstm_17, 0, 0]
+      - [shareablelstm_19, 0, 0]
+      - [shareablelstm_21, 0, 0]
+      - [shareablelstm_23, 0, 0]
+      - [shareablelstm_25, 0, 0]
+    name: merge_14
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: concat
+      mode_type: raw
+      name: merge_28
+      output_mask: null
+      output_mask_type: raw
+      output_shape: null
+      output_shape_type: raw
+    inbound_nodes:
+    - - [shareablelstm_3, 1, 0]
+      - [shareablelstm_5, 1, 0]
+      - [shareablelstm_7, 1, 0]
+      - [shareablelstm_9, 1, 0]
+      - [shareablelstm_11, 1, 0]
+      - [shareablelstm_13, 1, 0]
+      - [shareablelstm_15, 1, 0]
+      - [shareablelstm_17, 1, 0]
+      - [shareablelstm_19, 1, 0]
+      - [shareablelstm_21, 1, 0]
+      - [shareablelstm_23, 1, 0]
+      - [shareablelstm_25, 1, 0]
+    name: merge_28
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: concat
+      mode_type: raw
+      name: merge_42
+      output_mask: null
+      output_mask_type: raw
+      output_shape: null
+      output_shape_type: raw
+    inbound_nodes:
+    - - [shareablelstm_3, 2, 0]
+      - [shareablelstm_5, 2, 0]
+      - [shareablelstm_7, 2, 0]
+      - [shareablelstm_9, 2, 0]
+      - [shareablelstm_11, 2, 0]
+      - [shareablelstm_13, 2, 0]
+      - [shareablelstm_15, 2, 0]
+      - [shareablelstm_17, 2, 0]
+      - [shareablelstm_19, 2, 0]
+      - [shareablelstm_21, 2, 0]
+      - [shareablelstm_23, 2, 0]
+      - [shareablelstm_25, 2, 0]
+    name: merge_42
+  - class_name: Dropout
+    config: {name: dropout_1, p: 0.3, trainable: true}
+    inbound_nodes:
+    - - [merge_14, 0, 0]
+    name: dropout_1
+  - class_name: Dropout
+    config: {name: dropout_2, p: 0.3, trainable: true}
+    inbound_nodes:
+    - - [merge_28, 0, 0]
+    name: dropout_2
+  - class_name: Dropout
+    config: {name: dropout_3, p: 0.3, trainable: true}
+    inbound_nodes:
+    - - [merge_42, 0, 0]
+    name: dropout_3
+  - class_name: Merge
+    config:
+      arguments: {}
+      concat_axis: -1
+      dot_axes: -1
+      mode: concat
+      mode_type: raw
+      name: merge_43
+      output_mask: null
+      output_mask_type: raw
+      output_shape: null
+      output_shape_type: raw
+    inbound_nodes:
+    - - [dropout_1, 0, 0]
+      - [dropout_2, 0, 0]
+      - [dropout_3, 0, 0]
+    name: merge_43
+  - class_name: Dense
+    config: {W_constraint: null, W_regularizer: null, activation: linear, activity_regularizer: null,
+      b_constraint: null, b_regularizer: null, bias: true, init: glorot_uniform, input_dim: 720,
+      name: dense_1, output_dim: 80, trainable: true}
+    inbound_nodes:
+    - - [merge_43, 0, 0]
+    name: dense_1
+  - class_name: SReLU
+    config: {a_left_init: glorot_uniform, a_right_init: one, name: srelu_1, t_left_init: zero,
+      t_right_init: glorot_uniform, trainable: true}
+    inbound_nodes:
+    - - [dense_1, 0, 0]
+    name: srelu_1
+  - class_name: Dropout
+    config: {name: dropout_4, p: 0.3, trainable: true}
+    inbound_nodes:
+    - - [srelu_1, 0, 0]
+    name: dropout_4
+  - class_name: Dense
+    config: {W_constraint: null, W_regularizer: null, activation: linear, activity_regularizer: null,
+      b_constraint: null, b_regularizer: null, bias: true, init: glorot_uniform, input_dim: 80,
+      name: dense_2, output_dim: 23, trainable: true}
+    inbound_nodes:
+    - - [dropout_4, 0, 0]
+    name: dense_2
+  - class_name: Activation
+    config: {activation: softmax, name: target, trainable: true}
+    inbound_nodes:
+    - - [dense_2, 0, 0]
+    name: target
+  name: model_1
+  output_layers:
+  - [target, 0, 0]
+keras_version: 1.2.2

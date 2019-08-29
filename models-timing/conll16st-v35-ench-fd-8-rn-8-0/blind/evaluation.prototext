@@ -1,0 +1,180 @@
+measure {
+ key: "All Parser precision" 
+ value: "0.5033"
+}
+measure {
+ key: "All Parser recall" 
+ value: "0.5029"
+}
+measure {
+ key: "All Parser f1" 
+ value: "0.5031"
+}
+measure {
+ key: "All Explicit connective precision" 
+ value: "1.0"
+}
+measure {
+ key: "All Explicit connective recall" 
+ value: "1.0"
+}
+measure {
+ key: "All Explicit connective f1" 
+ value: "1.0"
+}
+measure {
+ key: "All Arg1 extraction precision" 
+ value: "1.0"
+}
+measure {
+ key: "All Arg1 extraction recall" 
+ value: "1.0"
+}
+measure {
+ key: "All Arg1 extraction f1" 
+ value: "1.0"
+}
+measure {
+ key: "All Arg2 extraction precision" 
+ value: "1.0"
+}
+measure {
+ key: "All Arg2 extraction recall" 
+ value: "1.0"
+}
+measure {
+ key: "All Arg2 extraction f1" 
+ value: "1.0"
+}
+measure {
+ key: "All Arg 1 Arg2 extraction precision" 
+ value: "1.0"
+}
+measure {
+ key: "All Arg 1 Arg2 extraction recall" 
+ value: "1.0"
+}
+measure {
+ key: "All Arg 1 Arg2 extraction f1" 
+ value: "1.0"
+}
+measure {
+ key: "Explicit only Parser precision" 
+ value: "0.7225"
+}
+measure {
+ key: "Explicit only Parser recall" 
+ value: "0.7212"
+}
+measure {
+ key: "Explicit only Parser f1" 
+ value: "0.7219"
+}
+measure {
+ key: "Explicit only Explicit connective precision" 
+ value: "1.0"
+}
+measure {
+ key: "Explicit only Explicit connective recall" 
+ value: "1.0"
+}
+measure {
+ key: "Explicit only Explicit connective f1" 
+ value: "1.0"
+}
+measure {
+ key: "Explicit only Arg1 extraction precision" 
+ value: "1.0"
+}
+measure {
+ key: "Explicit only Arg1 extraction recall" 
+ value: "1.0"
+}
+measure {
+ key: "Explicit only Arg1 extraction f1" 
+ value: "1.0"
+}
+measure {
+ key: "Explicit only Arg2 extraction precision" 
+ value: "1.0"
+}
+measure {
+ key: "Explicit only Arg2 extraction recall" 
+ value: "1.0"
+}
+measure {
+ key: "Explicit only Arg2 extraction f1" 
+ value: "1.0"
+}
+measure {
+ key: "Explicit only Arg 1 Arg2 extraction precision" 
+ value: "1.0"
+}
+measure {
+ key: "Explicit only Arg 1 Arg2 extraction recall" 
+ value: "1.0"
+}
+measure {
+ key: "Explicit only Arg 1 Arg2 extraction f1" 
+ value: "1.0"
+}
+measure {
+ key: "Non-explicit only Parser precision" 
+ value: "0.318"
+}
+measure {
+ key: "Non-explicit only Parser recall" 
+ value: "0.317"
+}
+measure {
+ key: "Non-explicit only Parser f1" 
+ value: "0.3175"
+}
+measure {
+ key: "Non-explicit only Explicit connective precision" 
+ value: "1.0"
+}
+measure {
+ key: "Non-explicit only Explicit connective recall" 
+ value: "1.0"
+}
+measure {
+ key: "Non-explicit only Explicit connective f1" 
+ value: "1.0"
+}
+measure {
+ key: "Non-explicit only Arg1 extraction precision" 
+ value: "1.0"
+}
+measure {
+ key: "Non-explicit only Arg1 extraction recall" 
+ value: "1.0"
+}
+measure {
+ key: "Non-explicit only Arg1 extraction f1" 
+ value: "1.0"
+}
+measure {
+ key: "Non-explicit only Arg2 extraction precision" 
+ value: "1.0"
+}
+measure {
+ key: "Non-explicit only Arg2 extraction recall" 
+ value: "1.0"
+}
+measure {
+ key: "Non-explicit only Arg2 extraction f1" 
+ value: "1.0"
+}
+measure {
+ key: "Non-explicit only Arg 1 Arg2 extraction precision" 
+ value: "1.0"
+}
+measure {
+ key: "Non-explicit only Arg 1 Arg2 extraction recall" 
+ value: "1.0"
+}
+measure {
+ key: "Non-explicit only Arg 1 Arg2 extraction f1" 
+ value: "1.0"
+}

@@ -1,0 +1,74 @@
+Evaluation for all discourse relations
+!! negative: gold sense not in alphabet (37644, Expansion)
+!! negative: gold sense not in alphabet (37841, Comparison)
+!! negative: gold sense not in alphabet (38425, Expansion)
+!! negative: gold sense not in alphabet (39004, Expansion)
+Explicit connectives         : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 1 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 2 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg1 Arg2 extractor combined : Precision 1.0000 Recall 1.0000 F1 1.0000
+Sense classification--------------
+Comparison.Concession                     precision 0.8571	recall 0.1818	F1 0.3000
+Comparison.Contrast                       precision 0.8919	recall 0.6633	F1 0.7608
+Contingency.Cause.Reason                  precision 0.6372	recall 0.3892	F1 0.4832
+Contingency.Cause.Result                  precision 0.7551	recall 0.2741	F1 0.4022
+Contingency.Condition                     precision 0.9623	recall 0.8095	F1 0.8793
+EntRel                                    precision 0.2418	recall 0.9217	F1 0.3831
+Expansion.Alternative                     precision 1.0000	recall 0.6000	F1 0.7500
+Expansion.Alternative.Chosen alternative  precision 1.0000	recall 0.1111	F1 0.2000
+Expansion.Conjunction                     precision 0.8537	recall 0.6354	F1 0.7286
+Expansion.Instantiation                   precision 0.9565	recall 0.2418	F1 0.3860
+Expansion.Restatement                     precision 0.2796	recall 0.1313	F1 0.1787
+Temporal.Asynchronous.Precedence          precision 0.9000	recall 0.8000	F1 0.8471
+Temporal.Asynchronous.Succession          precision 0.9024	recall 0.5362	F1 0.6727
+Temporal.Synchrony                        precision 0.6170	recall 0.6988	F1 0.6554
+*Micro-Average                            precision 0.5504	recall 0.5504	F1 0.5504
+Overall parser performance --------------
+Precision 0.5504 Recall 0.5504 F1 0.5504
+Evaluation for explicit discourse relations only
+!! negative: gold sense not in alphabet (37841, Comparison)
+Explicit connectives         : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 1 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 2 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg1 Arg2 extractor combined : Precision 1.0000 Recall 1.0000 F1 1.0000
+Sense classification--------------
+Comparison.Concession                     precision 0.8571	recall 0.2222	F1 0.3529
+Comparison.Contrast                       precision 0.8919	recall 0.9778	F1 0.9329
+Contingency.Cause.Reason                  precision 0.9643	recall 0.8438	F1 0.9000
+Contingency.Cause.Result                  precision 0.9143	recall 0.8421	F1 0.8767
+Contingency.Condition                     precision 0.9623	recall 0.8095	F1 0.8793
+Expansion.Alternative                     precision 1.0000	recall 0.6000	F1 0.7500
+Expansion.Alternative.Chosen alternative  precision 1.0000	recall 0.6667	F1 0.8000
+Expansion.Conjunction                     precision 0.8836	recall 0.9878	F1 0.9328
+Expansion.Instantiation                   precision 0.9545	recall 1.0000	F1 0.9767
+Expansion.Restatement                     precision 1.0000	recall 0.1429	F1 0.2500
+Temporal.Asynchronous.Precedence          precision 0.9474	recall 1.0000	F1 0.9730
+Temporal.Asynchronous.Succession          precision 0.9024	recall 0.5781	F1 0.7048
+Temporal.Synchrony                        precision 0.6237	recall 0.7436	F1 0.6784
+*Micro-Average                            precision 0.8764	recall 0.8764	F1 0.8764
+Overall parser performance --------------
+Precision 0.8764 Recall 0.8764 F1 0.8764
+Evaluation for non-explicit discourse relations only (Implicit, EntRel, AltLex)
+!! negative: gold sense not in alphabet (37644, Expansion)
+!! negative: gold sense not in alphabet (38425, Expansion)
+!! negative: gold sense not in alphabet (39004, Expansion)
+Explicit connectives         : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 1 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 2 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg1 Arg2 extractor combined : Precision 1.0000 Recall 1.0000 F1 1.0000
+Sense classification--------------
+Comparison.Concession                     precision 1.0000	recall 0.0000	F1 0.0000
+Comparison.Contrast                       precision 1.0000	recall 0.0000	F1 0.0000
+Contingency.Cause.Reason                  precision 0.3158	recall 0.1488	F1 0.2022
+Contingency.Cause.Result                  precision 0.3571	recall 0.0515	F1 0.0901
+EntRel                                    precision 0.2418	recall 0.9217	F1 0.3831
+Expansion.Alternative.Chosen alternative  precision 1.0000	recall 0.0000	F1 0.0000
+Expansion.Conjunction                     precision 0.4211	recall 0.0537	F1 0.0952
+Expansion.Instantiation                   precision 1.0000	recall 0.0143	F1 0.0282
+Expansion.Restatement                     precision 0.2717	recall 0.1309	F1 0.1767
+Temporal.Asynchronous.Precedence          precision 0.0000	recall 0.0000	F1 0.0000
+Temporal.Asynchronous.Succession          precision 1.0000	recall 0.0000	F1 0.0000
+Temporal.Synchrony                        precision 0.0000	recall 0.0000	F1 0.0000
+*Micro-Average                            precision 0.2537	recall 0.2537	F1 0.2537
+Overall parser performance --------------
+Precision 0.2537 Recall 0.2537 F1 0.2537

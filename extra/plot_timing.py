@@ -6,7 +6,7 @@ Plot empirical time complexity from console logs of FR system.
 Example:
   ./plot_timing.py ./plots/timing_al_train.pdf ./plots/timing_al_classify.pdf arg1_len "max argument length" ../models-timing/conll16st-v35-*-al-*-0
   ./plot_timing.py ./plots/timing_is_train.pdf ./plots/timing_is_classify.pdf input_size "num. of samples" ../models-timing/conll16st-v35-*-is-*-0
-  ./plot_timing.py ./plots/timing_fr_train.pdf ./plots/timing_fr_classify.pdf rnn_num "num. of focused RNNs" ../models-timing/conll16st-v35-*-fr-*-0
+  ./plot_timing.py ./plots/timing_rn_train.pdf ./plots/timing_rn_classify.pdf rnn_num "num. of focused RNNs" ../models-timing/conll16st-v35-*-rn-*-0
 """
 
 import codecs
@@ -41,6 +41,9 @@ def parse_logs(field, model_dirs, fname_fmt):
             if m:
                 mode = m.group(1)
             m = re.match(r".*  config '{}': ([0-9\.]+)$".format(field), line)
+            if m:
+                field_val = float(m.group(1))
+            m = re.match(r".*  config 'rest': .*'--{}=([0-9\.]+)'".format(field), line)
             if m:
                 field_val = float(m.group(1))
 
@@ -94,7 +97,7 @@ def plot_timing(fname, xlabel, ylabel, xylists, lang_colors):
         ax.plot(x, y, lang_colors[lang], linewidth=1)
 
         # add text
-        text_x = x[-1] + xmax * 0.02
+        text_x = x[-1] + xmax * 0.012
         text_y = y[-1] - ymax * 0.02
         plt.text(text_x, text_y, lang, color=lang_colors[lang][0:1])
 

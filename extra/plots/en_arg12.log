@@ -1,0 +1,18 @@
+load dataset '../data/conll16st-en-03-29-16-train/'
+count argument lengths at word level
+- arg1_x range: 1-200
+- arg2_x range: 1-200
+- rel_x range: 3-200
+- relations: 32535
+- cropped relations: 61
+plot argument lengths
+- saving to './plots/en_arg12w_lengths.pdf'
+count argument lengths at char level
+- arg1_x range: 2-1000
+- arg2_x range: 2-1000
+- rel_x range: 10-1000
+- relations: 32535
+- cropped relations: 155
+plot argument lengths
+- saving to './plots/en_arg12c_lengths.pdf'
+

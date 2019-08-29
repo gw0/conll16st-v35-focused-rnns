@@ -1,0 +1,25 @@
+
+Top few samples:
+{'GoldSense': 'Expansion.Conjunction', 'SenseProba': {'EntRel': 0.8567900061607361, 'Expansion.Conjunction': 0.054688188026332796}, 'PredSense': 'EntRel', 'Arg2RawText': 'The Times" reports that nurses at the hospital where he was treated for severe shell shock said that he was unable to hold a pen in his trembling hand', 'Arg1RawText': 'An Army chaplain who witnessed his execution wrote to his widow, Gertie Batstone "A finer soldier never lived" and that Pvt. Farr had refused to wear a blindfold during the execution, the "Independent" newspaper reported', 'PuncRawText': '', 'GoldType': u'Implicit', 'ConnRawText': ''}
+{'GoldSense': 'Expansion.Conjunction', 'SenseProba': {'EntRel': 0.36658790707588196, 'Expansion.Conjunction': 0.07270958807851002}, 'PredSense': 'EntRel', 'Arg2RawText': 'In May 2006, after the IRS contacted ORU about its involvement in Miller\'s campaign, Brooker said he was told to "fall on the sword" while taking "full and total blame', 'Arg1RawText': 'The university staff worried that "Roberts risked the non-profit status of the university by insisting" students work as volunteers for Miller\'s mayoral campaign', 'PuncRawText': '', 'GoldType': u'Implicit', 'ConnRawText': ''}
+
+Bottom few samples:
+{'GoldSense': 'Expansion.Conjunction', 'SenseProba': {'EntRel': 0.0032072088215500116, 'Expansion.Conjunction': 0.7439449513011809}, 'PredSense': 'Expansion.Conjunction', 'Arg2RawText': 'Another bill will be introduced to deal with modern slavery and human trafficking and to support victims of these offences', 'Arg1RawText': 'The speech announced the government would seek to pass a new Serious Crime Bill "to tackle child neglect, disrupt serious organised crime and strengthen powers to seize the proceeds of crime', 'PuncRawText': '', 'GoldType': u'AltLex', 'ConnRawText': 'Another'}
+{'GoldSense': 'Expansion.Conjunction', 'SenseProba': {'EntRel': 0.001979896565899253, 'Expansion.Conjunction': 0.7447709552186268}, 'PredSense': 'Expansion.Conjunction', 'Arg2RawText': 'Another promise is a loan of one billion dollars aimed at small and medium sized businesses in Africa', 'Arg1RawText': "As well as the loans, made over three years, China will write off the debt of Africa's poorest countries, build 100 African green energy facilities and systematically lower import duties on 95% of all African products exported to China", 'PuncRawText': '', 'GoldType': u'AltLex', 'ConnRawText': 'Another'}
+
+LaTeX output:
+Arg1 & Arg2 & Conn & \kwd{Expansion.Conjunction} & \kwd{EntRel} \\
+\hline
+Reports say that as many as 100 were killed & The Press Trust of India reports that the whereabouts of 130 officers have not been determined &  & $0.1191$ & $0.6146$ \\
+1,110, mostly civilians, have died in Lebanon and 157 Israelis, mostly military, were killed & Israel says it killed 530 Hezbollahh fighters &  & $0.1385$ & $0.4462$ \\
+The bodies were buried underground in a makeshift grave near the hospital in the BDR headquarters compound & The dirt had been covered with leaves &  & $0.1722$ & $0.5969$ \\
+Residents of the area said that around 3:50 AM Central time they heard a loud explosion & Dale Wyatt, who was walking his dog, Buddah, said that his dog found the body around 5:15 AM &  & $0.1883$ & $0.4659$ \\
+I used to work at the Daily Observer as Managing Director up to November 2007. I know the accused," he said & He continued by describing his former job at the observer &  & $0.1990$ & $0.6474$ \\
+The accused are often popular with students and parents, and are widely perceived as good teachers & In nearly 90 percent of the cases, the offenders are male &  & $0.2061$ & $0.1763$ \\
+He forged his name in motor sport on that mountain & I think the fans will come to expect something special &  & $0.2096$ & $0.1190$ \\
+Assassinations take life and power from mayors, tribal chiefs and policemen & Residents fear to leave their homes &  & $0.2314$ & $0.0494$ \\
+China has paid for schools, hospitals, malaria clinics and Chinese scholarships for African students & 50 more schools are to be built and 1,500 people trained to staff them &  & $0.2553$ & $0.1523$ \\
+that the official figures are now 40 dead and 269 injured & Most of the casualties were in the two carriages that were destroyed &  & $0.2945$ & $0.3419$ \\
+Marvin Harrison caught two touchdown passes from Peyton Manning, including a 65-yard pass in the second quarter & Mike Vanderjagt kicked four field goals &  & $0.3521$ & $0.1685$ \\
+There were protests in cities around Ireland, the UK and Italy & In the Middle East there were protests in Turkey, Lebanon and Iran &  & $0.3655$ & $0.0867$ \\
+Just over half were said to be residents from around the island & The remainder comprised of the organizers themselves, international journalists, diplomats, and others &  & $0.4565$ & $0.1564$ \\

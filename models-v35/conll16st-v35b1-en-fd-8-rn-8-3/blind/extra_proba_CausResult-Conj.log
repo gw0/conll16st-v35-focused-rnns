@@ -1,0 +1,23 @@
+
+Top few samples:
+{'GoldSense': 'Contingency.Cause.Result', 'SenseProba': {'Contingency.Cause.Result': 0.06679878383874893, 'Expansion.Conjunction': 0.4602714019033556}, 'PredSense': 'Expansion.Conjunction', 'Arg2RawText': 'this adversely impacts staff retention and, a high turnover of care workers can put the security of care recipients at-risk', 'Arg1RawText': 'A failure to invest in care workers is noted, with significant responsibility and the wide range of skills required being rewarded with low pay and status', 'PuncRawText': '', 'GoldType': u'AltLex', 'ConnRawText': 'this adversely impacts'}
+{'GoldSense': 'Contingency.Cause.Result', 'SenseProba': {'Contingency.Cause.Result': 0.06688254326581955, 'Expansion.Conjunction': 0.36049044254639284}, 'PredSense': 'Expansion.Conjunction', 'Arg2RawText': "Elop's strong software background and proven record in change management will be valuable assets", 'Arg1RawText': 'In the announcement, the Chairman of the Nokia Board of Directors stressed an expected shift of focus from hardware to software', 'PuncRawText': '', 'GoldType': u'Implicit', 'ConnRawText': ''}
+
+Bottom few samples:
+{'GoldSense': 'Contingency.Cause.Result', 'SenseProba': {'Contingency.Cause.Result': 0.8308786153793335, 'Expansion.Conjunction': 0.027755494733312767}, 'PredSense': 'Contingency.Cause.Result', 'Arg2RawText': 'This has led to a drop in ratings as it is opposite CBS\' popular reality TV show "Survivor: Guatemala', 'Arg1RawText': 'Alias" currently airs Thursdays at 8:00 PM EST on ABC', 'PuncRawText': '', 'GoldType': u'AltLex', 'ConnRawText': 'This has led'}
+{'GoldSense': 'Contingency.Cause.Result', 'SenseProba': {'Contingency.Cause.Result': 0.9785494804382324, 'Expansion.Conjunction': 0.0013760827714639624}, 'PredSense': 'Contingency.Cause.Result', 'Arg2RawText': 'As a result of the impact, the first three carriages of the train were derailed', 'Arg1RawText': 'A train travelling from Tel Aviv to Haifa struck a truck at a junction', 'PuncRawText': '', 'GoldType': u'AltLex', 'ConnRawText': 'As a result of the impact'}
+
+LaTeX output:
+Arg1 & Arg2 & Conn & \kwd{Contingency.Cause.Result} & \kwd{Expansion.Conjunction} \\
+\hline
+In the announcement, the Chairman of the Nokia Board of Directors stressed an expected shift of focus from hardware to software & Elop's strong software background and proven record in change management will be valuable assets &  & $0.0669$ & $0.3605$ \\
+I used to work at the Daily Observer as Managing Director up to November 2007 & I know the accused &  & $0.0707$ & $0.2505$ \\
+I haven't been to town for about two years & Wander round the town and have a cup of tea... I'd love that &  & $0.0820$ & $0.1869$ \\
+A further near miss was suffered by Bottas when he ran off-track after becoming caught in a battle between Räikkönen and Ricciardo & His team radioed to promise a complaint would be made to race director Charlie Whiting &  & $0.0831$ & $0.2115$ \\
+that "we have complete control of Kotkai, a stronghold of the terrorists, where most of the houses had been converted into strong bunkers & This is a very important development tactically &  & $0.0875$ & $0.2429$ \\
+to defer these taxes until economic conditions improve and James Hardie's profitability returns & In this way, the Australian government would allow James Hardie's taxes to go to the asbestos fund & In this way & $0.0961$ & $0.6119$ \\
+he was involved in only one other lawsuit involving ORU, concerning its hospital building, and it was settled before trial & I hate to call him a liar, but he's a liar &  & $0.1241$ & $0.1850$ \\
+but only if a Commons committee had decided the MP could be recalled & This latter requirement will make it "impossible to recall anyone" according to Goldsmith & This latter requirement will make it & $0.3167$ & $0.0613$ \\
+The data are presented graphically on a custom website that makes trends in the dog's activities easy to understand at a glance & This helps owners get a stronger sense of their dog's health, while enabling communication with the dog & This helps & $0.5741$ & $0.0585$ \\
+Alias" currently airs Thursdays at 8:00 PM EST on ABC & This has led to a drop in ratings as it is opposite CBS' popular reality TV show "Survivor: Guatemala & This has led & $0.8309$ & $0.0278$ \\
+A train travelling from Tel Aviv to Haifa struck a truck at a junction & As a result of the impact, the first three carriages of the train were derailed & As a result of the impact & $0.9785$ & $0.0014$ \\

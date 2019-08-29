@@ -1,0 +1,120 @@
+
+Evaluation for all discourse relations
+Argument extraction --------------
+Explicit connectives         : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 1 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 2 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg1 Arg2 extractor combined : Precision 1.0000 Recall 1.0000 F1 1.0000
+Sense classification --------------
+Alternative  precision 0.2500	recall 0.0588	F1 0.0952	sensitivity 0.0588	specificity 0.9986	informedness 0.0574
+Causation    precision 0.8194	recall 0.5784	F1 0.6782	sensitivity 0.5784	specificity 0.9935	informedness 0.5719
+Conditional  precision 0.7031	recall 0.7895	F1 0.7438	sensitivity 0.7895	specificity 0.9907	informedness 0.7802
+Conjunction  precision 0.7327	recall 0.9309	F1 0.8200	sensitivity 0.9309	specificity 0.5333	informedness 0.4643
+Contrast     precision 0.9262	recall 0.5305	F1 0.6746	sensitivity 0.5305	specificity 0.9952	informedness 0.5257
+EntRel       precision 0.0435	recall 0.0230	F1 0.0301	sensitivity 0.0230	specificity 0.9782	informedness 0.0011
+Expansion    precision 0.6136	recall 0.3000	F1 0.4030	sensitivity 0.3000	specificity 0.9721	informedness 0.2721
+Progression  precision 0.0769	recall 0.1429	F1 0.1000	sensitivity 0.1429	specificity 0.9943	informedness 0.1371
+Purpose      precision 0.6667	recall 0.4324	F1 0.5246	sensitivity 0.4324	specificity 0.9961	informedness 0.4286
+Temporal     precision 0.9367	recall 0.7789	F1 0.8506	sensitivity 0.7789	specificity 0.9975	informedness 0.7765
+*Micro-Average precision 0.7254	recall 0.7254	F1 0.7254	sensitivity 0.7254	specificity 0.9725	informedness 0.6979
+Confusion matrix --------------
+row = predicted, column = truth
+                   Alternative Causation Conditional Conjunction Contrast EntRel Expansion Progression Purpose Temporal __NEGATIVE_CLASS__ __TOTAL__ __PRECISION__ 
+Alternative        1*          0         1           0           1        0      0         0           0       1        0                  4         0.2500        
+Causation          0           59*       1           0           8        0      0         0           3       1        0                  72        0.8194        
+Conditional        0           3         45*         1           7        0      8         0           0       0        0                  64        0.7031        
+Conjunction        9           37        8           1132*       74       74     170       6           18      17       0                  1545      0.7327        
+Contrast           4           0         0           2           113*     2      0         0           0       1        0                  122       0.9262        
+EntRel             0           0         0           35          0        2*     9         0           0       0        0                  46        0.0435        
+Expansion          0           1         0           38          2        9      81*       0           0       1        0                  132       0.6136        
+Progression        3           1         1           4           1        0      2         1*          0       0        0                  13        0.0769        
+Purpose            0           1         0           0           7        0      0         0           16*     0        0                  24        0.6667        
+Temporal           0           0         1           4           0        0      0         0           0       74*      0                  79        0.9367        
+__NEGATIVE_CLASS__ 0           0         0           0           0        0      0         0           0       0        0*                 0         1.0000        
+__TOTAL__          17          102       57          1216        213      87     270       7           37      95       0                                          
+__RECALL__         0.0588      0.5784    0.7895      0.9309      0.5305   0.0230 0.3000    0.1429      0.4324  0.7789   1.0000                                     
+
+Overall parser performance --------------
+Precision 0.7254 Recall 0.7254 F1 0.7254
+Sensitivity 0.7254 Specificity 0.9725 Informedness 0.6979
+Brier score 0.4276 (0.4280)
+
+Evaluation for explicit discourse relations only
+Argument extraction --------------
+Explicit connectives         : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 1 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 2 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg1 Arg2 extractor combined : Precision 1.0000 Recall 1.0000 F1 1.0000
+Sense classification --------------
+Alternative  precision 0.2500	recall 0.0667	F1 0.1053	sensitivity 0.0667	specificity 0.9946	informedness 0.0612
+Causation    precision 0.8621	recall 0.9259	F1 0.8929	sensitivity 0.9259	specificity 0.9844	informedness 0.9103
+Conditional  precision 0.8333	recall 0.9184	F1 0.8738	sensitivity 0.9184	specificity 0.9826	informedness 0.9010
+Conjunction  precision 0.7299	recall 0.9448	F1 0.8235	sensitivity 0.9448	specificity 0.8586	informedness 0.8033
+Contrast     precision 0.9576	recall 0.6726	F1 0.7902	sensitivity 0.6726	specificity 0.9874	informedness 0.6601
+EntRel       precision 1.0000	recall 1.0000	F1 1.0000	sensitivity 1.0000	specificity 1.0000	informedness 1.0000
+Expansion    precision 1.0000	recall 0.7200	F1 0.8372	sensitivity 0.7200	specificity 1.0000	informedness 0.7200
+Progression  precision 0.1000	recall 0.3333	F1 0.1538	sensitivity 0.3333	specificity 0.9840	informedness 0.3173
+Purpose      precision 0.5294	recall 1.0000	F1 0.6923	sensitivity 1.0000	specificity 0.9856	informedness 0.9856
+Temporal     precision 0.9342	recall 0.8875	F1 0.9103	sensitivity 0.8875	specificity 0.9897	informedness 0.8772
+*Micro-Average precision 0.8163	recall 0.8163	F1 0.8163	sensitivity 0.8163	specificity 0.9816	informedness 0.7979
+Confusion matrix --------------
+row = predicted, column = truth
+                   Alternative Causation Conditional Conjunction Contrast EntRel Expansion Progression Purpose Temporal __NEGATIVE_CLASS__ __TOTAL__ __PRECISION__ 
+Alternative        1*          0         1           0           1        0      0         0           0       1        0                  4         0.2500        
+Causation          0           50*       1           0           7        0      0         0           0       0        0                  58        0.8621        
+Conditional        0           1         45*         0           3        0      5         0           0       0        0                  54        0.8333        
+Conjunction        7           2         0           154*        37       0      1         2           0       8        0                  211       0.7299        
+Contrast           4           0         0           1           113*     0      0         0           0       0        0                  118       0.9576        
+EntRel             0           0         0           0           0        0*     0         0           0       0        0                  0         1.0000        
+Expansion          0           0         0           0           0        0      18*       0           0       0        0                  18        1.0000        
+Progression        3           0         1           4           0        0      1         1*          0       0        0                  10        0.1000        
+Purpose            0           1         0           0           7        0      0         0           9*      0        0                  17        0.5294        
+Temporal           0           0         1           4           0        0      0         0           0       71*      0                  76        0.9342        
+__NEGATIVE_CLASS__ 0           0         0           0           0        0      0         0           0       0        0*                 0         1.0000        
+__TOTAL__          15          54        49          163         168      0      25        3           9       80       0                                          
+__RECALL__         0.0667      0.9259    0.9184      0.9448      0.6726   1.0000 0.7200    0.3333      1.0000  0.8875   1.0000                                     
+
+Overall parser performance --------------
+Precision 0.8163 Recall 0.8163 F1 0.8163
+Sensitivity 0.8163 Specificity 0.9816 Informedness 0.7979
+Brier score 0.2804 (0.2804)
+
+Evaluation for non-explicit discourse relations only (Implicit, EntRel, AltLex)
+Argument extraction --------------
+Explicit connectives         : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 1 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg 2 extractor              : Precision 1.0000 Recall 1.0000 F1 1.0000
+Arg1 Arg2 extractor combined : Precision 1.0000 Recall 1.0000 F1 1.0000
+Sense classification --------------
+Alternative  precision 1.0000	recall 0.0000	F1 0.0000	sensitivity 0.0000	specificity 1.0000	informedness 0.0000
+Causation    precision 0.6429	recall 0.1875	F1 0.2903	sensitivity 0.1875	specificity 0.9966	informedness 0.1841
+Conditional  precision 0.0000	recall 0.0000	F1 0.0000	sensitivity 0.0000	specificity 0.9935	informedness -0.0065
+Conjunction  precision 0.7331	recall 0.9288	F1 0.8194	sensitivity 0.9288	specificity 0.2614	informedness 0.1902
+Contrast     precision 0.0000	recall 0.0000	F1 0.0000	sensitivity 0.0000	specificity 0.9973	informedness -0.0027
+EntRel       precision 0.0435	recall 0.0230	F1 0.0301	sensitivity 0.0230	specificity 0.9696	informedness -0.0074
+Expansion    precision 0.5526	recall 0.2571	F1 0.3510	sensitivity 0.2571	specificity 0.9605	informedness 0.2176
+Progression  precision 0.0000	recall 0.0000	F1 0.0000	sensitivity 0.0000	specificity 0.9980	informedness -0.0020
+Purpose      precision 1.0000	recall 0.2500	F1 0.4000	sensitivity 0.2500	specificity 1.0000	informedness 0.2500
+Temporal     precision 1.0000	recall 0.2000	F1 0.3333	sensitivity 0.2000	specificity 1.0000	informedness 0.2000
+*Micro-Average precision 0.6919	recall 0.6919	F1 0.6919	sensitivity 0.6919	specificity 0.9692	informedness 0.6610
+Confusion matrix --------------
+row = predicted, column = truth
+                   Alternative Causation Conditional Conjunction Contrast EntRel Expansion Progression Purpose Temporal __NEGATIVE_CLASS__ __TOTAL__ __PRECISION__ 
+Alternative        0*          0         0           0           0        0      0         0           0       0        0                  0         1.0000        
+Causation          0           9*        0           0           1        0      0         0           3       1        0                  14        0.6429        
+Conditional        0           2         0*          1           4        0      3         0           0       0        0                  10        0.0000        
+Conjunction        2           35        8           978*        37       74     169       4           18      9        0                  1334      0.7331        
+Contrast           0           0         0           1           0*       2      0         0           0       1        0                  4         0.0000        
+EntRel             0           0         0           35          0        2*     9         0           0       0        0                  46        0.0435        
+Expansion          0           1         0           38          2        9      63*       0           0       1        0                  114       0.5526        
+Progression        0           1         0           0           1        0      1         0*          0       0        0                  3         0.0000        
+Purpose            0           0         0           0           0        0      0         0           7*      0        0                  7         1.0000        
+Temporal           0           0         0           0           0        0      0         0           0       3*       0                  3         1.0000        
+__NEGATIVE_CLASS__ 0           0         0           0           0        0      0         0           0       0        0*                 0         1.0000        
+__TOTAL__          2           48        8           1053        45       87     245       4           28      15       0                                          
+__RECALL__         0.0000      0.1875    0.0000      0.9288      0.0000   0.0230 0.2571    0.0000      0.2500  0.2000   1.0000                                     
+
+Overall parser performance --------------
+Precision 0.6919 Recall 0.6919 F1 0.6919
+Sensitivity 0.6919 Specificity 0.9692 Informedness 0.6610
+Brier score 0.4819 (0.4825)

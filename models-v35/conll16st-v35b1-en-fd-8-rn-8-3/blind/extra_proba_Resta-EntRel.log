@@ -1,0 +1,27 @@
+
+Top few samples:
+{'GoldSense': 'Expansion.Restatement', 'SenseProba': {'EntRel': 0.8445801734924316, 'Expansion.Restatement': 0.022380994632840157}, 'PredSense': 'EntRel', 'Arg2RawText': 'New measures introduced covered crime, the economy, energy and house building', 'Arg1RawText': "Queen Elizabeth II formally reopened Parliament on Wednesday and announced the legislative agenda of the UK government for the final year of the Coalition's five year term", 'PuncRawText': '', 'GoldType': u'Implicit', 'ConnRawText': ''}
+{'GoldSense': 'Expansion.Restatement', 'SenseProba': {'EntRel': 0.7053348422050476, 'Expansion.Restatement': 0.026322588324546814}, 'PredSense': 'EntRel', 'Arg2RawText': 'In March 2006, it was revealed that the government had to negotiate an exit strategy so that after school hours child care could be provided', 'Arg1RawText': 'Australian Greens education spokesperson, John Kaye, said that problems were already emerging with the PPP program in NSW', 'PuncRawText': '', 'GoldType': u'Implicit', 'ConnRawText': ''}
+
+Bottom few samples:
+{'GoldSense': 'Expansion.Restatement', 'SenseProba': {'EntRel': 0.03362636640667915, 'Expansion.Restatement': 0.3122907876968384}, 'PredSense': 'Expansion.Restatement', 'Arg2RawText': 'When you go now, I will maybe not talk to anybody till tomorrow; maybe the whole of tomorrow, nobody to talk to face to face. Nobody will knock on that door. That is it, a life of isolation', 'Arg1RawText': 'The social isolation many elderly experience was summed up neatly by another woman in her eighties in her interview', 'PuncRawText': '', 'GoldType': u'Implicit', 'ConnRawText': ''}
+{'GoldSense': 'Expansion.Restatement', 'SenseProba': {'EntRel': 0.0861772745847702, 'Expansion.Restatement': 0.33317697048187256}, 'PredSense': 'Expansion.Restatement', 'Arg2RawText': 'I originally started with just the police cars back in November last year and left it at that, and then, after uploading it, people came to me saying they wanted to help out with it, and so about a couple of months ago we started making this total conversion', 'Arg1RawText': "The original plan was for the GTA modification to only transform the police cars into New Zealand branded cars but was later extended when O'Callaghan was contacted by other developers", 'PuncRawText': '', 'GoldType': u'Implicit', 'ConnRawText': ''}
+
+LaTeX output:
+Arg1 & Arg2 & Conn & \kwd{Expansion.Restatement} & \kwd{EntRel} \\
+\hline
+The pedometer is called "Wandant", from Japanese "Wan", equivalent to "woof", and the "dant" of "pendant & The latter refers to the pedometer, because it is attached to a dog collar &  & $0.0551$ & $0.5756$ \\
+Taal said in court that he knew Mam Sait Ceesay & I used to work at the Daily Observer as Managing Director up to November 2007. I know the accused," he said &  & $0.0612$ & $0.7855$ \\
+Medvedev said because of this treaty, the entire world community has won & The Russian leader said the year-long negotiations were tough, but hard work on both sides brought success &  & $0.0649$ & $0.5304$ \\
+Only the 1972 Dolphins finished the season with perfection & They played a 14-game schedule with three playoff games &  & $0.1425$ & $0.2773$ \\
+You've never seen a Columbine done by a black child & Never &  & $0.1505$ & $0.2700$ \\
+U.S. military commanders have decided to step up their counterinsurgency efforts in the city & They will add more troops and work toward reconstruction &  & $0.1658$ & $0.1625$ \\
+he would request Prime Minister Rudd stay true to his promise that "no one would go without compensation" & I think the state Government should be our white knight &  & $0.1672$ & $0.1678$ \\
+Whatever change that may take place in the world, our friendship with the African people will not change & He described this friendship as 'unbreakable &  & $0.1766$ & $0.1230$ \\
+we will provide that & We will obviously give special thought to how we are going to do that and we will take into account the families' wishes &  & $0.1924$ & $0.1126$ \\
+Over 1,200 people have lost their lives in the conflict & 1,110, mostly civilians, have died in Lebanon and 157 Israelis, mostly military, were killed &  & $0.1981$ & $0.1120$ \\
+that his council would host a fitting tribute to Mr Brock & The council will make plans for a fitting tribute in honour of Peter's life and career in the coming days &  & $0.2153$ & $0.2268$ \\
+Nigel Farage, leader of the UK Independence Party, questions the assertions that there is scientific consensus on global warming & At best, he said, there is uncertainty &  & $0.2385$ & $0.1898$ \\
+that "our suspects here are the lawless MILF group because of the types of improvised explosive device that were used & The IEDs contained mortar rounds which are their signature &  & $0.2575$ & $0.1658$ \\
+although 2004 saw sharp increases in young voter participation & That year, 47 percent of 18 to 24-year-olds voted, compared with 36 percent in the 2000 election &  & $0.2799$ & $0.0615$ \\
+As soon as I saw it, there was no question about it & I looked at 211 fantastic sites all over Europe, but here it is - the dune size and the ocean front &  & $0.2859$ & $0.1504$ \\
